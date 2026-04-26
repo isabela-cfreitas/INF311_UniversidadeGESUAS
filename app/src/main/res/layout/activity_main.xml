@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,13 +7,66 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/conjunto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="150dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/logo_GESUAS"
+            android:layout_width="289dp"
+            android:layout_height="96dp"
+            android:src="@drawable/Logo_Universidade_GESUAS" />
+
+        <ImageView
+            android:id="@+id/Beea"
+            android:layout_width="145dp"
+            android:layout_height="169dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/Beea" />
+
+        <TextView
+            android:id="@+id/txt_parte1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Olá, seja bem vindo à Universidade GESUAS!"/>
+
+        <TextView
+            android:id="@+id/txt_parte2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Sou a Beea e irei te acompanhar em sua jornada de aprendizado"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/conjunto"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp">
+        <Button
+            android:id="@+id/btn_cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            style="@style/botao1"
+            android:text="Começar agora"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            style="@style/botao2"
+            android:text="Já tenho uma conta"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -5,5 +5,21 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="botao1" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/azul</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="fontFamily">@font/Poppins_SemiBold</item>
+    </style>
+
+    <style name="botao2" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">@color/verde</item>
+        <item name="android:textColor">@color/verde</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="fontFamily">@font/Poppins_SemiBold</item>
+    </style>
+
     <style name="Theme.UniversidadeGESUAS" parent="Base.Theme.UniversidadeGESUAS" />
 </resources>
