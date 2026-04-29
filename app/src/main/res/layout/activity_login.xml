@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        tools:context=".LoginActivity">
+        <LinearLayout
+            android:id="@+id/conjunto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="30dp">
+            <ImageView
+                android:id="@+id/logo_GESUAS"
+                android:layout_width="266dp"
+                android:layout_height="88dp"
+                android:src="@drawable/logo_universidade_gesuas"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/crie_conta"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back_arrow"
+            android:contentDescription="Voltar"
+            android:onClick="click_back"/>
+
+        <LinearLayout
+            android:id="@+id/infCad"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/conjunto"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:layout_marginTop="10dp"
+                android:text="@string/email"/>
+            <EditText
+                android:id="@+id/email_res"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/campo_texto"
+                android:hint="@string/email" />
+
+            <TextView
+                android:id="@+id/senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:layout_marginTop="10dp"
+                android:text="@string/senha"/>
+            <EditText
+                android:id="@+id/senha_res"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/campo_texto"
+                android:hint="@string/senha" />
+            <TextView
+                android:id="@+id/esqueci_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                android:text="@string/esqueci_senha"
+                android:textColor="@color/azul"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/logar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+            android:layout_marginBottom="200dp"  style="@style/botao1"
+            android:layout_marginStart="50dp" android:layout_marginEnd="50dp"
+            android:text="@string/logar"/>
+
+    </RelativeLayout>
+</ScrollView>

@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.UniversidadeGESUAS_INF311"
-        minSdk = 22
+        minSdk = 23
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"

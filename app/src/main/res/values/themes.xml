@@ -9,7 +9,7 @@
         <item name="android:backgroundTint">@color/azul</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="cornerRadius">10dp</item>
-        <item name="fontFamily">@font/Poppins_SemiBold</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
     </style>
 
     <style name="botao2" parent="Widget.MaterialComponents.Button.OutlinedButton">
@@ -18,7 +18,7 @@
         <item name="strokeColor">@color/verde</item>
         <item name="android:textColor">@color/verde</item>
         <item name="cornerRadius">10dp</item>
-        <item name="fontFamily">@font/Poppins_SemiBold</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
     </style>
 
     <style name="Theme.UniversidadeGESUAS" parent="Base.Theme.UniversidadeGESUAS" />

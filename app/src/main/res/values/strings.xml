@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Universidade GESUAS</string>
+    <string name="bem_vindo">Olá, seja bem vindo à Universidade GESUAS!</string>
+    <string name="beea_apresentacao">Sou a Beea e irei te acompanhar em sua jornada de aprendizado</string>
+    <string name="comecar">Começar agora</string>
+    <string name="entrar">Já tenho uma conta</string>
+    <string name="crie_conta">Crie uma conta do Universidade GESUAS</string>
+    <string name="nome">Nome</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="data_nascimento">Data de nascimento</string>
+    <string name="dia">Dia</string>
+    <string name="mes">Mês</string>
+    <string name="ano">Ano</string>
+    <string name="cadastro_pessoa_fisica">Cadastro de Pessoa Física (CPF)</string>
+    <string name="cpf">CPF</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="confirme_senha">Confirme sua senha</string>
+    <string name="esqueci_senha">Esqueci minha senha</string>
+    <string name="criar_conta">Criar conta</string>
+    <string name="logar">Entrar</string>
+
 </resources>

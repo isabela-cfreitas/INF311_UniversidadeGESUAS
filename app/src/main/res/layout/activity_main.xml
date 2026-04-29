@@ -20,14 +20,14 @@
             android:id="@+id/logo_GESUAS"
             android:layout_width="289dp"
             android:layout_height="96dp"
-            android:src="@drawable/Logo_Universidade_GESUAS" />
+            android:src="@drawable/logo_universidade_gesuas" />
 
         <ImageView
             android:id="@+id/Beea"
             android:layout_width="145dp"
             android:layout_height="169dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/Beea" />
+            android:src="@drawable/beea" />
 
         <TextView
             android:id="@+id/txt_parte1"
@@ -35,18 +35,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
-            android:text="Olá, seja bem vindo à Universidade GESUAS!"/>
+            android:text="@string/bem_vindo"/>
 
         <TextView
             android:id="@+id/txt_parte2"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Sou a Beea e irei te acompanhar em sua jornada de aprendizado"/>
+            android:text="@string/beea_apresentacao"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="30dp" android:layout_marginEnd="30dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/conjunto"
         android:orientation="vertical"
@@ -58,14 +59,16 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             style="@style/botao1"
-            android:text="Começar agora"/>
+            android:text="@string/comecar"
+            android:onClick="click_create"/>
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             style="@style/botao2"
-            android:text="Já tenho uma conta"/>
+            android:text="@string/entrar"
+            android:onClick="click_login"/>
     </LinearLayout>
 
 

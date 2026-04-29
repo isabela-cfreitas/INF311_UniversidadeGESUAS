@@ -9,6 +9,8 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         tools:context=".CadastroActivity">
         <LinearLayout
             android:id="@+id/conjunto"
@@ -17,18 +19,30 @@
             android:orientation="vertical"
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="30dp">
             <ImageView
                 android:id="@+id/logo_GESUAS"
                 android:layout_width="266dp"
                 android:layout_height="88dp"
-                android:src="@drawable/Logo_Universidade_GESUAS"/>
+                android:src="@drawable/logo_universidade_gesuas"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/Poppins_SemiBold"
-                android:text="Crie uma conta do Universidade GESUAS"/>
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/crie_conta"/>
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back_arrow"
+            android:contentDescription="Voltar"
+            android:onClick="click_back"/>
 
         <LinearLayout
             android:id="@+id/infCad"
@@ -42,22 +56,22 @@
                 android:id="@+id/nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="19dp"
-                android:text="Nome"/>
+                android:textSize="19sp"
+                android:text="@string/nome"/>
             <EditText
                 android:id="@+id/nome_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/campo_texto"
-                android:hint="Nome Completo" />
+                android:hint="@string/nome_completo" />
             <TextView
                 android:id="@+id/nascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="19dp"
-                android:text="Data de nascimento"/>
+                android:textSize="19sp"
+                android:text="@string/data_nascimento"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -70,7 +84,7 @@
                     android:layout_height="38dp"
                     android:background="@drawable/campo_texto"
                     android:layout_marginEnd="8dp"
-                    android:hint="Dia" />
+                    android:hint="@string/dia" />
                 <EditText
                     android:id="@+id/mes_res"
                     android:layout_marginTop="3dp"
@@ -79,7 +93,7 @@
                     android:layout_height="38dp"
                     android:background="@drawable/campo_texto"
                     android:layout_marginEnd="8dp"
-                    android:hint="Mês" />
+                    android:hint="@string/mes" />
                 <EditText
                     android:id="@+id/ano_res"
                     android:layout_marginTop="3dp"
@@ -87,68 +101,68 @@
                     android:layout_weight="1"
                     android:layout_height="38dp"
                     android:background="@drawable/campo_texto"
-                    android:hint="Ano" />
+                    android:hint="@string/ano" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/cpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="19dp"
+                android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="Cadastro de Pessoa Física (CPF)"/>
+                android:text="@string/cadastro_pessoa_fisica"/>
             <EditText
                 android:id="@+id/cpf_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/campo_texto"
-                android:hint="CPF" />
+                android:hint="@string/cpf" />
 
             <TextView
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="19dp"
+                android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="Email"/>
+                android:text="@string/email"/>
             <EditText
                 android:id="@+id/email_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/campo_texto"
-                android:hint="Email" />
+                android:hint="@string/email" />
 
             <TextView
                 android:id="@+id/senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="19dp"
+                android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="Senha"/>
+                android:text="@string/senha"/>
             <EditText
                 android:id="@+id/senha_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/campo_texto"
-                android:hint="Senha" />
+                android:hint="@string/senha" />
 
             <TextView
                 android:id="@+id/senha_conf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="19dp"
+                android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="Confirme sua senha"/>
+                android:text="@string/confirme_senha"/>
             <EditText
                 android:id="@+id/senha_conf_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:background="@drawable/campo_texto"
-                android:hint="Confirme sua senha" />
+                android:hint="@string/confirme_senha" />
         </LinearLayout>
 
         <Button
@@ -159,7 +173,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             style="@style/botao1"
-            android:text="Criar conta"/>
+            android:text="@string/criar_conta"/>
 
     </RelativeLayout>
 </ScrollView>
