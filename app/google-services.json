@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "951707801895",
+    "project_id": "universidadegesuas-inf311",
+    "storage_bucket": "universidadegesuas-inf311.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951707801895:android:7020eecab4e791ce1bf102",
+        "android_client_info": {
+          "package_name": "com.UniversidadeGESUAS_INF311"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNlhkZVYWweZtggh3GabGFrrjIJoved6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

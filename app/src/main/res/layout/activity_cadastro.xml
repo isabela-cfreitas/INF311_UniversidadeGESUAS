@@ -62,7 +62,8 @@
                 android:id="@+id/nome_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:hint="@string/nome_completo" />
             <TextView
@@ -81,7 +82,8 @@
                     android:layout_marginTop="3dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="38dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="45dp"
                     android:background="@drawable/campo_texto"
                     android:layout_marginEnd="8dp"
                     android:hint="@string/dia" />
@@ -90,7 +92,8 @@
                     android:layout_marginTop="3dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="38dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="45dp"
                     android:background="@drawable/campo_texto"
                     android:layout_marginEnd="8dp"
                     android:hint="@string/mes" />
@@ -99,7 +102,8 @@
                     android:layout_marginTop="3dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="38dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="45dp"
                     android:background="@drawable/campo_texto"
                     android:hint="@string/ano" />
             </LinearLayout>
@@ -115,7 +119,8 @@
                 android:id="@+id/cpf_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
+                android:minHeight="43dp"
                 android:background="@drawable/campo_texto"
                 android:hint="@string/cpf" />
 
@@ -130,7 +135,8 @@
                 android:id="@+id/email_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:hint="@string/email" />
 
@@ -145,7 +151,8 @@
                 android:id="@+id/senha_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:hint="@string/senha" />
 
@@ -160,7 +167,8 @@
                 android:id="@+id/senha_conf_res"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:hint="@string/confirme_senha" />
         </LinearLayout>
@@ -173,7 +181,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             style="@style/botao1"
-            android:text="@string/criar_conta"/>
+            android:text="@string/criar_conta"
+            android:onClick="click_cadastrar"/>
 
     </RelativeLayout>
 </ScrollView>
