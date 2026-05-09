@@ -73,7 +73,7 @@ public class CadastroActivity extends AppCompatActivity {
     private Boolean validar_dados (String nome_,String dia_,String mes_,String ano_,String cpf_,String email_,String senha_,String senha_conf_) {
         boolean ok = false;
         if (email_.isEmpty() || senha_.isEmpty() || senha_conf_.isEmpty() || nome_.isEmpty() || dia_.isEmpty() || mes_.isEmpty() || ano_.isEmpty() || cpf_.isEmpty()) {
-            Toast.makeText(this, "Preencha todos os campos para realizar o cadastro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
         } else if (!senha_.equals(senha_conf_)){
             Toast.makeText(this, "Senha ou confirmação de senha incorreta", Toast.LENGTH_SHORT).show();
         } else if (cpf_.length()!=11) {
