@@ -155,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
+                android:inputType="textPassword"
                 android:hint="@string/senha" />
 
             <TextView
@@ -171,6 +172,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
+                android:inputType="textPassword"
                 android:hint="@string/confirme_senha" />
         </LinearLayout>
 
