@@ -49,14 +49,14 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void click_cadastrar (View v) {
-        String email_ = email.getText().toString();
+        String email_ = email.getText().toString().trim();
         String senha_ = senha.getText().toString();
         String senha_conf_ = senha_conf.getText().toString();
-        String nome_ = nome.getText().toString();
+        String nome_ = nome.getText().toString().trim();
         String dia_ = dia.getText().toString();
         String mes_ = mes.getText().toString();
         String ano_ = ano.getText().toString();
-        String cpf_ = cpf.getText().toString();
+        String cpf_ = cpf.getText().toString().trim().replace(".", "").replace("-", "");
         String nasc_ = dia.getText().toString() + "/" + mes.getText().toString() + "/" + ano.getText().toString();
         if (validar_dados(nome_, dia_, mes_, ano_, cpf_, email_, senha_, senha_conf_)) {
             mAuth.createUserWithEmailAndPassword(email_, senha_).addOnCompleteListener(this, task -> {
@@ -70,18 +70,43 @@ public class CadastroActivity extends AppCompatActivity {
         }
     }
 
-    private Boolean validar_dados (String nome_,String dia_,String mes_,String ano_,String cpf_,String email_,String senha_,String senha_conf_) {
-        boolean ok = false;
+    private Boolean validar_dados(String nome_,String dia_,String mes_,String ano_,String cpf_,String email_,String senha_,String senha_conf_) {
         if (email_.isEmpty() || senha_.isEmpty() || senha_conf_.isEmpty() || nome_.isEmpty() || dia_.isEmpty() || mes_.isEmpty() || ano_.isEmpty() || cpf_.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
         } else if (!senha_.equals(senha_conf_)){
             Toast.makeText(this, "Senha ou confirmação de senha incorreta", Toast.LENGTH_SHORT).show();
-        } else if (cpf_.length()!=11) {
+        } else if (cpf_.length()!=11 || !validar_cpf(cpf_)) {
             Toast.makeText(this, "Informe um cpf válido", Toast.LENGTH_SHORT).show();
         } else {
-            ok = true;
+            return true;
         }
-        return ok;
+        return false;
+    }
+
+    private static Boolean validar_cpf(String cpf_) {
+        // CPFs com todos os números repetidos são considerados inválidos mesmo passando na conta
+        boolean repetido = true;
+        for (int i = 1; i <10; i++){
+            if (cpf_.charAt(i) != cpf_.charAt(0)){
+                repetido = false;
+            }
+        }
+        if (repetido) return false;
+
+        int soma = 0, d;
+        for (int i = 0; i < 9; i++){
+            soma += (cpf_.charAt(i) - '0') * (10-i);
+        }
+        soma = (soma * 10) % 11;
+        if (soma == 10) soma = 0;
+        if (soma != (cpf_.charAt(9) - '0')) return false;
+        soma = 0;
+        for (int i = 0; i < 10; i++){
+            soma += (cpf_.charAt(i) - '0') * (11-i);
+        }
+        soma = (soma * 10) % 11;
+        if (soma == 10) soma = 0;
+        return soma == (cpf_.charAt(10) - '0');
     }
 
     private void salvar_dados(String id_, String nome_, String cpf_, String nasc_) {
