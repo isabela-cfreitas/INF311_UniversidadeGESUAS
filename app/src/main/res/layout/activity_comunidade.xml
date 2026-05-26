@@ -41,6 +41,20 @@
             android:inputType="text" />
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/barra_superior"
+        android:layout_above="@id/bloco_rodape_total">
+
+        <LinearLayout
+            android:id="@+id/posts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp" />
+    </ScrollView>
+
     <LinearLayout
         android:id="@+id/bloco_rodape_total"
         android:layout_width="match_parent"
