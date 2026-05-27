@@ -127,4 +127,19 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/btn_novo_post"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:src="@drawable/botao_mais"
+        android:scaleType="fitCenter"
+        android:padding="10dp"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_above="@id/bloco_rodape_total"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="6dp"
+        android:onClick="novo_post" />
+
 </RelativeLayout>

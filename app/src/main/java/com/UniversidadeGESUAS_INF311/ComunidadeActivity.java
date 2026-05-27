@@ -77,12 +77,21 @@ public class ComunidadeActivity extends AppCompatActivity {
                     Conteudo.setText(conteudo);
                     Curtidas.setText(String.valueOf(curtidas != null ? curtidas : 0));
                     Comentarios.setText(String.valueOf(comentarios != null ? comentarios : 0));
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM HH:mm", Locale.getDefault());
-                    Data.setText(sdf.format(time.toDate()));
+                    if (time != null) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM HH:mm", Locale.getDefault());
+                        Data.setText(sdf.format(time.toDate()));
+                    } else {
+                        Data.setText("Agora mesmo");
+                    }
                     containerPosts.addView(postView);
                 }
             }
         });
+    }
+
+    public void novo_post (View v) {
+        Intent it = new Intent(getBaseContext(), NovoPostActivity.class);
+        startActivity(it);
     }
 
     public void navegar(View v) {
