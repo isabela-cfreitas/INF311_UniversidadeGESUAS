@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -44,7 +45,7 @@ public class ComunidadeActivity extends AppCompatActivity {
     }
 
     public void carregarPost() {
-        db.collection("Posts").orderBy("timestamp",Query.Direction.DESCENDING).addSnapshotListener((value,error)->{
+        db.collection("Posts").orderBy("timestamp",Query.Direction.DESCENDING).limit(20).addSnapshotListener((value,error)->{
             if (error != null) {
                 Toast.makeText(this, "Erro ao carregar o feed", Toast.LENGTH_SHORT).show();
                 return;
@@ -72,6 +73,11 @@ public class ComunidadeActivity extends AppCompatActivity {
                     TextView Comentarios = postView.findViewById(R.id.contador_comentarios);
                     TextView Data = postView.findViewById(R.id.data_post);
 
+                    LinearLayout botaoCurtir = postView.findViewById(R.id.layout_curtir);
+                    botaoCurtir.setTag(publi.getId());
+                    LinearLayout botaoComentar = postView.findViewById(R.id.layout_comentar);
+                    botaoComentar.setTag(publi.getId());
+
                     Nome.setText(nome);
                     Cargo.setText(cargo);
                     Conteudo.setText(conteudo);
@@ -92,6 +98,24 @@ public class ComunidadeActivity extends AppCompatActivity {
     public void novo_post (View v) {
         Intent it = new Intent(getBaseContext(), NovoPostActivity.class);
         startActivity(it);
+    }
+
+    public void curtir (View v) {
+        String idPost = (String) v.getTag();
+        if (idPost != null) {
+            db.collection("Posts").document(idPost).update("numeroCurtidas", FieldValue.increment(1)).addOnFailureListener(e -> {
+                Toast.makeText(this, "Erro ao curtir o post", Toast.LENGTH_SHORT).show();
+            });
+        }
+    }
+
+    public void comentar (View v) {
+        String idPost = (String) v.getTag();
+        if (idPost != null) {
+            Intent it = new Intent(this, ComentariosActivity.class);
+            it.putExtra("idPost",idPost);
+            startActivity(it);
+        }
     }
 
     public void navegar(View v) {

@@ -88,16 +88,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/barra_botoes">
 
         <LinearLayout
+            android:id="@+id/layout_curtir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginEnd="24dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="curtir">
 
             <ImageView
+                android:id="@+id/botaoCurtir"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:src="@drawable/curtida"
@@ -113,12 +120,18 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_comentar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="comentar">
 
             <ImageView
+                android:id="@+id/botaoComentar"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:src="@drawable/comentario"
