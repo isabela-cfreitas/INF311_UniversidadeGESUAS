@@ -101,6 +101,8 @@
                 android:orientation="horizontal">
                 <EditText
                     android:id="@+id/dia_res"
+                    android:inputType="number"
+                    android:maxLength="2"
                     android:layout_marginTop="3dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -111,6 +113,8 @@
                     android:hint="@string/dia" />
                 <EditText
                     android:id="@+id/mes_res"
+                    android:inputType="number"
+                    android:maxLength="2"
                     android:layout_marginTop="3dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -121,6 +125,8 @@
                     android:hint="@string/mes" />
                 <EditText
                     android:id="@+id/ano_res"
+                    android:inputType="number"
+                    android:maxLength="4"
                     android:layout_marginTop="3dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -139,6 +145,8 @@
                 android:text="@string/cadastro_pessoa_fisica"/>
             <EditText
                 android:id="@+id/cpf_res"
+                android:inputType="number"
+                android:maxLength="11"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
