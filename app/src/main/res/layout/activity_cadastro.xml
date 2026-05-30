@@ -68,6 +68,27 @@
                 android:background="@drawable/campo_texto"
                 android:hint="@string/nome_completo" />
             <TextView
+                android:id="@+id/nome_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:text="@string/nome_usuario"/>
+            <EditText
+                android:id="@+id/nome_usuario_res"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="45dp"
+                android:background="@drawable/campo_texto"
+                android:hint="@string/nome_usuario" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nome_usuario_regras"
+                android:textSize="13sp"
+                android:textColor="#555555"
+                android:layout_marginLeft="5dp"/>
+            <TextView
                 android:id="@+id/nascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

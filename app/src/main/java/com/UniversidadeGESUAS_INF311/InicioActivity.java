@@ -1,6 +1,8 @@
 package com.UniversidadeGESUAS_INF311;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,16 @@ public class InicioActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void navegar(View v) {
+        int id = v.getId();
+        if (id == R.id.home) {
+            //startActivity(new Intent(this, InicioActivity.class));
+        } else if (id == R.id.ranking) {
+            startActivity(new Intent(this, RankingActivity.class));
+        } else if (id == R.id.comunidade) {
+            startActivity(new Intent(this, ComunidadeActivity.class));
+        }
     }
 }
