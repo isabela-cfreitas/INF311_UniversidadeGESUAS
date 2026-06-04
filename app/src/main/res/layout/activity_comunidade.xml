@@ -9,42 +9,78 @@
     tools:context=".ComunidadeActivity">
 
     <LinearLayout
-        android:id="@+id/barra_superior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="60dp"
-        android:background="@color/azul"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:layout_alignParentTop="true">
+        android:orientation="vertical"
+        android:id="@+id/topo">
 
-        <ImageView
-            android:id="@+id/foto_perfil"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:src="@drawable/perfil_beea" />
-
-        <EditText
-            android:id="@+id/busca"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="42dp"
-            android:layout_weight="1"
-            android:layout_marginStart="12dp"
-            android:background="@drawable/campo_texto"
-            android:hint="O que você está procurando hoje?"
-            android:textSize="16sp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COMUNIDADE"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:id="@+id/foto_perfil"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/perfil_beea"
+                android:layout_marginEnd="4dp" />
+
+            <ImageButton
+                android:id="@+id/btn_menu"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:src="@drawable/menu"
+                android:scaleType="fitCenter"
+                android:padding="10dp"
+                android:background="?attr/actionBarItemBackground"
+                android:elevation="6dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/barra_superior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="60dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:inputType="text" />
+            android:paddingBottom="8dp">
+
+            <EditText
+                android:id="@+id/busca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="42dp"
+                android:background="@drawable/campo_texto"
+                android:hint="O que você está procurando hoje?"
+                android:textSize="16sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:inputType="text" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/barra_superior"
+        android:layout_below="@id/topo"
         android:layout_above="@id/bloco_rodape_total">
 
         <LinearLayout
