@@ -75,6 +75,63 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/comunidades"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="#E5E5E5"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/geral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:text="Geral"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:paddingHorizontal="24dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/verde2"
+                    app:cornerRadius="100dp"
+                    android:onClick="navegar" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/profissionais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:text="Profissionais"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#556B2F"
+                    android:gravity="center"
+                    android:paddingHorizontal="24dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@android:color/transparent"
+                    app:cornerRadius="100dp"
+                    android:onClick="navegar" />
+            </FrameLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <ScrollView

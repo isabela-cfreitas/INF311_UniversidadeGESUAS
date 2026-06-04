@@ -35,6 +35,8 @@ public class ComunidadeActivity extends AppCompatActivity {
     private EditText inputBusca;
     private List<QueryDocumentSnapshot> listaPosts = new ArrayList<>();
 
+    private String abaAtual = "geral";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +116,16 @@ public class ComunidadeActivity extends AppCompatActivity {
         } else if (id == R.id.comunidade) {
 
         }
+
+        else if (id == R.id.geral) {
+            abaAtual = "geral";
+            atualizarVisualAbas();
+            filtrarPosts(inputBusca.getText().toString()); // Atualiza o feed
+        } else if (id == R.id.profissionais) {
+            abaAtual = "profissionais";
+            atualizarVisualAbas();
+            filtrarPosts(inputBusca.getText().toString()); // Atualiza o feed
+        }
     }
 
     private void filtrarPosts(String textoBusca) {
@@ -124,6 +136,12 @@ public class ComunidadeActivity extends AppCompatActivity {
             String nome = publi.getString("nomeUsuario"); //preciso jogar pra string pq a funçao contains recebe string
             String cargo = publi.getString("cargo");
             String conteudo = publi.getString("conteudo");
+
+            if (abaAtual.equals("profissionais")) {
+                if (cargo == null || !cargo.equalsIgnoreCase("administrador")) {
+                    continue; // Pula este post e vai para o próximo
+                }
+            }
 
             if (!query.isEmpty()) {
                 boolean contemConteudo = conteudo != null && conteudo.toLowerCase().contains(query);
@@ -170,4 +188,26 @@ public class ComunidadeActivity extends AppCompatActivity {
 
         }
     }
+
+    private void atualizarVisualAbas() {
+        com.google.android.material.button.MaterialButton btnGeral = findViewById(R.id.geral);
+        com.google.android.material.button.MaterialButton btnProfissionais = findViewById(R.id.profissionais);
+        int corVerdeAtivo = androidx.core.content.ContextCompat.getColor(this, R.color.verde2);
+        int corTextoInativo = android.graphics.Color.parseColor("#556B2F");
+        int corBranco = android.graphics.Color.parseColor("#FFFFFF");
+        int corTransparente = android.graphics.Color.TRANSPARENT;
+
+        if (abaAtual.equals("geral")) {
+            btnGeral.setBackgroundColor(corVerdeAtivo);
+            btnGeral.setTextColor(corBranco);
+            btnProfissionais.setBackgroundColor(corTransparente);
+            btnProfissionais.setTextColor(corTextoInativo);
+        } else {
+            btnProfissionais.setBackgroundColor(corVerdeAtivo);
+            btnProfissionais.setTextColor(corBranco);
+            btnGeral.setBackgroundColor(corTransparente);
+            btnGeral.setTextColor(corTextoInativo);
+        }
+    }
+
 }
