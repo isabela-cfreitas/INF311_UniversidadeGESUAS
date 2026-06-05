@@ -21,5 +21,19 @@
     <string name="esqueci_senha">Esqueci minha senha</string>
     <string name="criar_conta">Criar conta</string>
     <string name="logar">Entrar</string>
+    <string name="ola">OLÁ, </string>
+    <string name="boasVindas">Seja Bem Vindo(a) Ao Universidade GESUAS!</string>
+    <string name="cursosEmAndamento">CURSOS EM ANDAMENTO</string>
+    <string name="verTodos">Ver todos</string>
+    <string name="materiaisComplementares">MATERIAIS COMPLEMENTARES</string>
+    <string name="capaDescricao">Capa do curso</string>
+    <string name="iconeDescricao">Capa do material</string>
+    <string name="iniciar">COMEÇAR</string>
+    <string name="sequencia">QUE TAL COMEÇAR SUA SEQUÊNCIA?</string>
+    <string name="beeaEstudandoDescricao">Abelha Beea Estudando</string>
+    <string name="gesuasDescricao">Logo GESUAS</string>
+    <string name="inicio">INÍCIO</string>
+    <string name="comunidade">COMUNIDADE</string>
+    <string name="ranking"> RANKING</string>
 
 </resources>

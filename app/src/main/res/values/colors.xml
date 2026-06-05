@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
     <color name="azul">#1A4F9B</color>
     <color name="verde">#98BC15</color>
     <color name="verde2">#709611</color>
+    <color name="txtLink">#0B4C8C</color>
+    <color name="bgButton">#EAEAEA</color>
+    <color name="bgTela">#FFFFFF</color>
+    <color name="bgBarra">#FFFFFF</color>
+    <color name="bgBarraAtiva">#C5C5C5</color>
+    <color name="txtPrimary">#000000</color>
+    <color name="bgInput">#F5F5F5</color>
+    <color name="bordaInput">#CCCCCC</color>
 </resources>

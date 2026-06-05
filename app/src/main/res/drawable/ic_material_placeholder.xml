@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Página do documento -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,4 L44,4 L52,14 L52,60 L12,60 Z"/>
+
+    <!-- Dobra do canto superior direito -->
+    <path
+        android:fillColor="#CCCCCC"
+        android:pathData="M44,4 L44,14 L52,14 Z"/>
+
+    <!-- Linhas de texto simuladas -->
+    <path
+        android:fillColor="#AAAAAA"
+        android:pathData="M18,24 L46,24 L46,27 L18,27 Z"/>
+    <path
+        android:fillColor="#AAAAAA"
+        android:pathData="M18,32 L46,32 L46,35 L18,35 Z"/>
+    <path
+        android:fillColor="#AAAAAA"
+        android:pathData="M18,40 L38,40 L38,43 L18,43 Z"/>
+
+</vector>

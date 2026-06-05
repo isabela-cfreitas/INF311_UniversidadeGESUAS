@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="150dp"
+    android:layout_height="190dp"
+    android:layout_marginEnd="10dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:id="@+id/cardRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7DC3F5">
+
+        <!-- Capa do material -->
+        <ImageView
+            android:id="@+id/imgMaterial"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/ic_material_placeholder"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/iconeDescricao"
+            android:alpha="0.85"/>
+
+        <!-- Nome do material -->
+        <TextView
+            android:id="@+id/txtNomeMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            tools:text="MATERIAL I"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
