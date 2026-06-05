@@ -73,8 +73,7 @@
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:hint="@string/email"
-                android:textColor="@color/txtPrimary"
-                android:text="wenderson.rodrigues@ufv.br"/>
+                android:textColor="@color/txtPrimary"/>
 
             <TextView
                 android:id="@+id/senha"
@@ -92,7 +91,6 @@
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:inputType="textPassword"
-                android:text="123456"
                 android:textColor="@color/txtPrimary"
                 android:hint="@string/senha" />
             <TextView

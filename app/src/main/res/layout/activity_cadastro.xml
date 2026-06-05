@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgTela"
     android:fillViewport="true"
     android:fitsSystemWindows="true">
     <RelativeLayout
@@ -30,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/txtPrimary"
                 android:text="@string/crie_conta"/>
         </LinearLayout>
 
@@ -42,6 +44,7 @@
             android:layout_marginTop="30dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/back_arrow"
+            app:tint="@color/txtPrimary"
             android:contentDescription="Voltar"
             android:onClick="click_back"/>
 
@@ -58,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
+                android:textColor="@color/txtPrimary"
                 android:text="@string/nome"/>
             <EditText
                 android:id="@+id/nome_res"
@@ -66,13 +70,15 @@
                 android:layout_height="wrap_content"
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
-                android:hint="@string/nome_completo" />
+                android:hint="@string/nome_completo"
+                android:textColor="@color/txtPrimary"/>
             <TextView
                 android:id="@+id/nome_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
-                android:text="@string/nome_usuario"/>
+                android:text="@string/nome_usuario"
+                android:textColor="@color/txtPrimary"/>
             <EditText
                 android:id="@+id/nome_usuario_res"
                 android:layout_marginTop="3dp"
@@ -80,13 +86,14 @@
                 android:layout_height="wrap_content"
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
-                android:hint="@string/nome_usuario" />
+                android:hint="@string/nome_usuario"
+                android:textColor="@color/txtPrimary"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nome_usuario_regras"
+                android:textColor="@color/txtPrimary"
                 android:textSize="13sp"
-                android:textColor="#555555"
                 android:layout_marginLeft="5dp"/>
             <TextView
                 android:id="@+id/nascimento"
@@ -94,7 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="19sp"
-                android:text="@string/data_nascimento"/>
+                android:text="@string/data_nascimento"
+                android:textColor="@color/txtPrimary"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -110,7 +118,8 @@
                     android:minHeight="45dp"
                     android:background="@drawable/campo_texto"
                     android:layout_marginEnd="8dp"
-                    android:hint="@string/dia" />
+                    android:hint="@string/dia"
+                    android:textColor="@color/txtPrimary"/>
                 <EditText
                     android:id="@+id/mes_res"
                     android:inputType="number"
@@ -122,7 +131,8 @@
                     android:minHeight="45dp"
                     android:background="@drawable/campo_texto"
                     android:layout_marginEnd="8dp"
-                    android:hint="@string/mes" />
+                    android:hint="@string/mes"
+                    android:textColor="@color/txtPrimary"/>
                 <EditText
                     android:id="@+id/ano_res"
                     android:inputType="number"
@@ -133,7 +143,8 @@
                     android:layout_height="wrap_content"
                     android:minHeight="45dp"
                     android:background="@drawable/campo_texto"
-                    android:hint="@string/ano" />
+                    android:hint="@string/ano"
+                    android:textColor="@color/txtPrimary"/>
             </LinearLayout>
 
             <TextView
@@ -142,7 +153,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="@string/cadastro_pessoa_fisica"/>
+                android:text="@string/cadastro_pessoa_fisica"
+                android:textColor="@color/txtPrimary"/>
             <EditText
                 android:id="@+id/cpf_res"
                 android:inputType="number"
@@ -152,7 +164,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="43dp"
                 android:background="@drawable/campo_texto"
-                android:hint="@string/cpf" />
+                android:hint="@string/cpf"
+                android:textColor="@color/txtPrimary"/>
 
             <TextView
                 android:id="@+id/email"
@@ -160,7 +173,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="@string/email"/>
+                android:text="@string/email"
+                android:textColor="@color/txtPrimary"/>
             <EditText
                 android:id="@+id/email_res"
                 android:layout_marginTop="3dp"
@@ -168,7 +182,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
-                android:hint="@string/email" />
+                android:hint="@string/email"
+                android:textColor="@color/txtPrimary"/>
 
             <TextView
                 android:id="@+id/senha"
@@ -176,7 +191,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="@string/senha"/>
+                android:text="@string/senha"
+                android:textColor="@color/txtPrimary"/>
             <EditText
                 android:id="@+id/senha_res"
                 android:layout_marginTop="3dp"
@@ -185,7 +201,8 @@
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:inputType="textPassword"
-                android:hint="@string/senha" />
+                android:hint="@string/senha"
+                android:textColor="@color/txtPrimary"/>
 
             <TextView
                 android:id="@+id/senha_conf"
@@ -193,7 +210,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
                 android:layout_marginTop="10dp"
-                android:text="@string/confirme_senha"/>
+                android:text="@string/confirme_senha"
+                android:textColor="@color/txtPrimary"/>
             <EditText
                 android:id="@+id/senha_conf_res"
                 android:layout_marginTop="3dp"
@@ -202,7 +220,8 @@
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:inputType="textPassword"
-                android:hint="@string/confirme_senha" />
+                android:hint="@string/confirme_senha"
+                android:textColor="@color/txtPrimary"/>
         </LinearLayout>
 
         <Button
