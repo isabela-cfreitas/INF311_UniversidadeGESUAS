@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://tools.android.com/aims"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F5F9"
+    tools:context=".PerfilActivity">
+
+    <LinearLayout
+        android:id="@+id/topo_perfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="#FFFFFF">
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back_arrow" android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="voltar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="MEU PERFIL"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topo_perfil"
+        android:layout_above="@id/barra_gesuas_rodape">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="60dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/foto_perfil_grande"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/perfil_beea"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/perfil_cargo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#556B2F"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome de Usuário"
+                android:textColor="@color/azul"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/perfil_nome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/campo_texto"
+                android:paddingHorizontal="16dp"
+                android:textColor="#747474"
+                android:textSize="16sp"
+                android:enabled="false" android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="E-mail institucional"
+                android:textColor="@color/azul"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/perfil_email"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/campo_texto"
+                android:paddingHorizontal="16dp"
+                android:textColor="#747474"
+                android:textSize="16sp"
+                android:enabled="false"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nova Senha"
+                android:textColor="@color/azul"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp"/>
+
+            <EditText
+                android:id="@+id/perfil_senha"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/campo_texto"
+                android:paddingHorizontal="16dp"
+                android:hint="Digite para alterar sua senha"
+                android:inputType="textPassword"
+                android:textSize="16sp"
+                android:layout_marginBottom="32dp"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btn_salvar_perfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                style="@style/botao1"
+                android:text="Salvar Alterações"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+    <LinearLayout
+        android:id="@+id/barra_gesuas_rodape"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/azul"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="36dp"
+            android:src="@drawable/logo_universidade_gesuas_branca"
+            android:contentDescription="Logo GESUAS" />
+    </LinearLayout>
+
+
+</RelativeLayout>

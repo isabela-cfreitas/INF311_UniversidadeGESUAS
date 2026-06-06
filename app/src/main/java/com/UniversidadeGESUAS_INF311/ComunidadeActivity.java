@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -37,6 +38,9 @@ public class ComunidadeActivity extends AppCompatActivity {
 
     private String abaAtual = "geral";
 
+    private androidx.drawerlayout.widget.DrawerLayout menu;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,8 @@ public class ComunidadeActivity extends AppCompatActivity {
 
         db= FirebaseFirestore.getInstance();
         containerPosts = findViewById(R.id.posts);
+        mAuth = FirebaseAuth.getInstance();
+        menu = findViewById(R.id.drawer_layout);
 
         inputBusca = findViewById(R.id.busca);
         inputBusca.addTextChangedListener(new TextWatcher() {
@@ -110,9 +116,13 @@ public class ComunidadeActivity extends AppCompatActivity {
     public void navegar(View v) {
         int id = v.getId();
         if (id == R.id.home) {
-            startActivity(new Intent(this, InicioActivity.class));
+            Intent it = new Intent(this, InicioActivity.class);
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Igual ao slide pág. 36
+            startActivity(it);
         } else if (id == R.id.ranking) {
-            startActivity(new Intent(this, RankingActivity.class));
+            Intent it = new Intent(this, RankingActivity.class);
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(it);
         } else if (id == R.id.comunidade) {
 
         }
@@ -120,11 +130,11 @@ public class ComunidadeActivity extends AppCompatActivity {
         else if (id == R.id.geral) {
             abaAtual = "geral";
             atualizarVisualAbas();
-            filtrarPosts(inputBusca.getText().toString()); // Atualiza o feed
+            filtrarPosts(inputBusca.getText().toString());
         } else if (id == R.id.profissionais) {
             abaAtual = "profissionais";
             atualizarVisualAbas();
-            filtrarPosts(inputBusca.getText().toString()); // Atualiza o feed
+            filtrarPosts(inputBusca.getText().toString());
         }
     }
 
@@ -209,5 +219,28 @@ public class ComunidadeActivity extends AppCompatActivity {
             btnGeral.setTextColor(corTextoInativo);
         }
     }
+
+    public void abrirMenu(View v) {
+        if (!menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.openDrawer(androidx.core.view.GravityCompat.END);
+        }
+    }
+
+    public void VerPerfil(View v) {
+        menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        startActivity(new Intent(this, PerfilActivity.class));
+    }
+
+    public void sairConta (View v) {
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
+        mAuth.signOut();
+        Intent it = new Intent(this, MainActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //tem q limpar pra usuario nao conseguir "relogar" dps só com o botão de voltar
+        startActivity(it);
+        finish();
+    }
+
 
 }

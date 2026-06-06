@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniversidadeGESUAS">
         <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".NovoComentarioActivity"
             android:exported="false" />
         <activity

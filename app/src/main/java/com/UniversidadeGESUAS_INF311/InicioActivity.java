@@ -25,6 +25,8 @@ public class InicioActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
+    private androidx.drawerlayout.widget.DrawerLayout menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class InicioActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db    = FirebaseFirestore.getInstance();
+        menu = findViewById(R.id.drawer_layout);
 
         configurarCursos();
         configurarMateriais();
@@ -118,9 +121,35 @@ public class InicioActivity extends AppCompatActivity {
     public void navegar(View v) {
         int id = v.getId();
         if (id == R.id.ranking) {
-            startActivity(new Intent(this, RankingActivity.class));
+            Intent it = new Intent(this, RankingActivity.class);
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            startActivity(it);
         } else if (id == R.id.comunidade) {
-            startActivity(new Intent(this, ComunidadeActivity.class));
+            Intent it = new Intent(this, ComunidadeActivity.class);
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            startActivity(it);
         }
+    }
+
+    public void abrirMenu(View v) {
+        if (!menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.openDrawer(androidx.core.view.GravityCompat.END);
+        }
+    }
+
+    public void VerPerfil(View v) {
+        menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        startActivity(new Intent(this, PerfilActivity.class));
+    }
+
+    public void sairConta (View v) {
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
+        mAuth.signOut();
+        Intent it = new Intent(this, MainActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //tem q limpar pra usuario nao conseguir "relogar" dps só com o botão de voltar
+        startActivity(it);
+        finish();
     }
 }
