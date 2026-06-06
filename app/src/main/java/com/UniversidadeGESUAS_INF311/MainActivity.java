@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //@Override
-    //protected void onStart() {
-    //    super.onStart();
-    //    if (mAuth.getCurrentUser() != null) {
-    //        startActivity(new Intent(this, InicioActivity.class));
-    //        finish();
-    //    }
-    //}
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(this, InicioActivity.class));
+            finish();
+        }
+    }
 
     public void click_create(View v) {
         Intent it = new Intent(getBaseContext(), CadastroActivity.class);
