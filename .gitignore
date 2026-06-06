@@ -14,3 +14,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+.idea/studiobot.xml
+.idea/deviceManager.xml
+.idea/deploymentTargetSelector.xml

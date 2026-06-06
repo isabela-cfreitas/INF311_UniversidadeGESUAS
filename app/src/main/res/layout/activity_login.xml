@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgTela"
     android:fillViewport="true"
     android:fitsSystemWindows="true">
     <RelativeLayout
@@ -30,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/txtPrimary"
                 android:text="@string/crie_conta"/>
         </LinearLayout>
 
@@ -42,6 +44,7 @@
             android:layout_marginTop="30dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/back_arrow"
+            app:tint="@color/txtPrimary"
             android:contentDescription="Voltar"
             android:onClick="click_back"/>
 
@@ -60,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/txtPrimary"
                 android:text="@string/email"/>
             <EditText
                 android:id="@+id/email_res"
@@ -68,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
-                android:hint="@string/email" />
+                android:hint="@string/email"
+                android:textColor="@color/txtPrimary"/>
 
             <TextView
                 android:id="@+id/senha"
@@ -76,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/txtPrimary"
                 android:text="@string/senha"/>
             <EditText
                 android:id="@+id/senha_res"
@@ -85,6 +91,7 @@
                 android:minHeight="45dp"
                 android:background="@drawable/campo_texto"
                 android:inputType="textPassword"
+                android:textColor="@color/txtPrimary"
                 android:hint="@string/senha" />
             <TextView
                 android:id="@+id/esqueci_senha"

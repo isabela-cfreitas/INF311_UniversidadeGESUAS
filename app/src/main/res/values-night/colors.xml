@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bgTela">#121212</color>
+    <color name="bgBarra">#1E1E1E</color>
+    <color name="bgBarraAtiva">#2F2F2F</color>
+    <color name="txtPrimary">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bgInput">#2C2C2C</color>
+    <color name="bordaInput">#555555</color>
+</resources>
