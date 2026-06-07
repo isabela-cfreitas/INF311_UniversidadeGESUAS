@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/bgTela"
     tools:context=".NovoPostActivity">
 
     <RelativeLayout
@@ -23,6 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:src="@drawable/back_arrow"
+            app:tint="@color/txtPrimary"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:onClick="voltar" />
 
@@ -60,8 +61,8 @@
             android:layout_marginStart="12dp"
             android:background="@android:color/transparent"
             android:hint="Compartilhe alguma ideia com a comunidade"
-            android:textColorHint="#555555"
-            android:textColor="#334155"
+            android:textColorHint="#8E8E93"
+            android:textColor="@color/txtPrimary"
             android:textSize="18sp"
             android:gravity="top"
             android:inputType="textMultiLine"
