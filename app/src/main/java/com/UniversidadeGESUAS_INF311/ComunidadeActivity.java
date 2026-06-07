@@ -231,6 +231,11 @@ public class ComunidadeActivity extends AppCompatActivity {
         startActivity(new Intent(this, PerfilActivity.class));
     }
 
+    public void VerMetas(View v) {
+        menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        startActivity(new Intent(this, MetasActivity.class));
+    }
+
     public void sairConta (View v) {
         if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
             menu.closeDrawer(androidx.core.view.GravityCompat.END);
