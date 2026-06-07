@@ -344,6 +344,27 @@
             android:layout_marginBottom="4dp"/>
 
         <TextView
+            android:id="@+id/btn_menu_metas"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Como ganhar pontos"
+            android:textColor="@color/txtPrimary"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="VerMetas"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E5E5E5"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
             android:id="@+id/btn_menu_sair"
             android:layout_width="match_parent"
             android:layout_height="54dp"
@@ -357,26 +378,6 @@
             android:background="?attr/selectableItemBackground"
             android:onClick="sairConta"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E5E5E5"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"/>
-
-        <TextView
-            android:id="@+id/btn_menu_metas"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:text="Como ganhar pontos"
-            android:textColor="#DC2626"
-            android:textSize="16sp"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            android:onClick="VerMetas"/>
 
     </LinearLayout>
 

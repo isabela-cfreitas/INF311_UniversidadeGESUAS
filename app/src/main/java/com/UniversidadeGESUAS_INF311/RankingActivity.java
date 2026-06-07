@@ -1,5 +1,6 @@
 package com.UniversidadeGESUAS_INF311;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,8 @@ public class RankingActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private LinearLayout leaderboard;
+
+    private androidx.drawerlayout.widget.DrawerLayout menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,7 @@ public class RankingActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         leaderboard = findViewById(R.id.leaderboard);
+        menu = findViewById(R.id.drawer_layout);
 
         getFromDB();
     }
@@ -164,5 +168,46 @@ public class RankingActivity extends AppCompatActivity {
         if (Objects.equals(u.getUid(), user.getUid())) Nome.setTextColor(0xFF4040FF);
 
         leaderboard.addView(positionView);
+    }
+
+    //funções que nao sao da logica de ranking:
+    public void navegar(View v) {
+        int id = v.getId();
+        if (id == R.id.home) {
+            Intent it = new Intent(this, InicioActivity.class);
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            startActivity(it);
+        } else if (id == R.id.comunidade) {
+            Intent it = new Intent(this, ComunidadeActivity.class);
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            startActivity(it);
+        }
+    }
+
+    public void abrirMenu(View v) {
+        if (!menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.openDrawer(androidx.core.view.GravityCompat.END);
+        }
+    }
+
+    public void VerPerfil(View v) {
+        menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        startActivity(new Intent(this, PerfilActivity.class));
+    }
+
+    public void VerMetas(View v) {
+        menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        startActivity(new Intent(this, MetasActivity.class));
+    }
+
+    public void sairConta (View v) {
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
+        mAuth.signOut();
+        Intent it = new Intent(this, MainActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //tem q limpar pra usuario nao conseguir "relogar" dps só com o botão de voltar
+        startActivity(it);
+        finish();
     }
 }

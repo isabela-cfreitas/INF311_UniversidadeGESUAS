@@ -87,50 +87,104 @@ tools:context=".RankingActivity">
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:background="@color/bgBarra"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/home"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:src="@drawable/home"
-                app:tint="@color/txtPrimary"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="navegar"/>
-
-            <ImageButton
-                android:id="@+id/ranking"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:src="@drawable/ranking"
-                app:tint="@color/txtPrimary"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="navegar"/>
-
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-                <View
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/fundo_aba_ativa" />
+                <ImageButton
+                    android:id="@+id/home"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/home"
+                    app:tint="@color/txtPrimary"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:onClick="navegar"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inicio"
+                    android:textSize="11sp"
+                    android:textColor="@color/txtPrimary"
+                    android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="86dp"
+                    android:layout_height="52dp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/fundo_aba_ativa"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/ranking"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ranking"
+                            app:tint="@color/txtPrimary"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:onClick="navegar"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ranking"
+                            android:textSize="11sp"
+                            android:textColor="@color/txtPrimary"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/comunidade"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_gravity="center"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/community"
                     app:tint="@color/txtPrimary"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:onClick="navegar"/>
-            </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/comunidade"
+                    android:textSize="11sp"
+                    android:textColor="@color/txtPrimary"
+                    android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -144,9 +198,8 @@ tools:context=".RankingActivity">
                 android:layout_width="90dp"
                 android:layout_height="36dp"
                 android:src="@drawable/logo_universidade_gesuas_branca"
-                android:contentDescription="Logo GESUAS" />
+                android:contentDescription="@string/gesuasDescricao" />
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>
@@ -184,6 +237,27 @@ tools:context=".RankingActivity">
         android:focusable="true"
         android:background="?attr/selectableItemBackground"
         android:onClick="VerPerfil"/>
+
+    <TextView
+        android:id="@+id/btn_menu_metas"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Como ganhar pontos"
+        android:textColor="@color/txtPrimary"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="VerMetas"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E5E5E5"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"/>
 
     <View
         android:layout_width="match_parent"
