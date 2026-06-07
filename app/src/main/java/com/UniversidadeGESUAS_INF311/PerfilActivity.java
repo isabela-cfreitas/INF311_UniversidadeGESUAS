@@ -23,7 +23,7 @@ public class PerfilActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private EditText usuario, email;
-    private TextView cargo;
+    private TextView cargo, pontuacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class PerfilActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.perfil_email);
         db = FirebaseFirestore.getInstance();
         cargo = findViewById(R.id.perfil_cargo);
+        pontuacao = findViewById(R.id.perfil_pontuacao);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -52,10 +53,17 @@ public class PerfilActivity extends AppCompatActivity {
                     if (res.exists()) {
                         String nomeUsuarioBanco = res.getString("nome_usuario");
                         String cargoBanco = res.getString("cargo");
+                        Long pontos = res.getLong("pontos");
+
                         cargo.setText(cargoBanco);
                         usuario.setText(nomeUsuarioBanco);
                         String emailUsuario = mAuth.getCurrentUser().getEmail();
                         email.setText(emailUsuario);
+                        if (pontos != null) {
+                           pontuacao.setText(pontos + " pontos");
+                        } else {
+                            pontuacao.setText("0 pontos");
+                        }
                     } else {
                         Toast.makeText(this, "Perfil do usuário não encontrado", Toast.LENGTH_SHORT).show();
                     }
