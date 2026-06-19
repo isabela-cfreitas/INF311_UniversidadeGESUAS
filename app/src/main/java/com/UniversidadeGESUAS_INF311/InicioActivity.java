@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InicioActivity extends AppCompatActivity {
+    private final boolean mockCademi = true;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -49,7 +50,7 @@ public class InicioActivity extends AppCompatActivity {
 
     // CURSOS EM ANDAMENTO — dados mock
     private void configurarCursos() {
-        List<Curso> cursos = Arrays.asList(
+        /*List<Curso> cursos = Arrays.asList(
                 new Curso("Ética e sigilo no cotidiano de gestores e trabalhadores do SUAS", "09/04", "09h00"),
                 new Curso("Proteção Social Básica no SUAS",                                  "15/04", "14h00"),
                 new Curso("Vigilância Socioassistencial",                                    "22/04", "10h00"),
@@ -60,7 +61,42 @@ public class InicioActivity extends AppCompatActivity {
         recyclerCursos.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         );
-        recyclerCursos.setAdapter(new CursoAdapter(cursos));
+        recyclerCursos.setAdapter(new CursoAdapter(cursos));*/
+
+        RecyclerView recyclerCursos = findViewById(R.id.recyclerCursos);
+        recyclerCursos.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        );
+        if (mockCademi) {
+            String urlPadrao = "https://membros.universidadegesuas.com.br/auth/login"; //url do mock
+            List<Curso> cursosMock = Arrays.asList(
+                    new Curso("Ética e sigilo no cotidiano de gestores e trabalhadores do SUAS", "09/04", "09h00", urlPadrao),
+                    new Curso("Proteção Social Básica no SUAS",                                  "15/04", "14h00", urlPadrao),
+                    new Curso("Vigilância Socioassistencial",                                    "22/04", "10h00", urlPadrao),
+                    new Curso("Gestão do Trabalho no SUAS",                                      "29/04", "09h00", urlPadrao)
+            );
+            recyclerCursos.setAdapter(new CursoAdapter(cursosMock));
+
+        } else {
+            //arrumar aqui quando tiver api
+            /*
+            apiService.obterCursosEmAndamento("TOKEN").enqueue(new retrofit2.Callback<List<Curso>>() {
+                @Override
+                public void onResponse(Call<List<Curso>> call, Response<List<Curso>> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        List<Curso> cursosDaAPI = response.body();
+                        //se nao tiver o link de cada curso a gente pode ou jogar tudo pro login ou fazer eles serem nao clicaveis
+                        //OBS: se for nao clicavel tem q tirar o camp ourl que botei na classe custos!!!!
+                        recyclerCursos.setAdapter(new CursoAdapter(cursosDaAPI));
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Curso>> call, Throwable t) {
+                    Log.e("API", "Erro nos cursos", t);
+                }
+            });
+            */
+        }
     }
 
     // MATERIAIS COMPLEMENTARES — dados mock
@@ -122,11 +158,11 @@ public class InicioActivity extends AppCompatActivity {
         int id = v.getId();
         if (id == R.id.ranking) {
             Intent it = new Intent(this, RankingActivity.class);
-            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(it);
         } else if (id == R.id.comunidade) {
             Intent it = new Intent(this, ComunidadeActivity.class);
-            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(it);
         }
     }

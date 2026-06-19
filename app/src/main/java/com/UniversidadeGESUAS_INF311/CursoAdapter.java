@@ -37,7 +37,7 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolder> 
 
         // Abre o site ao clicar no card
         holder.itemView.setOnClickListener(v -> {
-            String url = "https://membros.universidadegesuas.com.br/auth/login";
+            String url = curso.getUrlCurso();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             v.getContext().startActivity(intent);
         });

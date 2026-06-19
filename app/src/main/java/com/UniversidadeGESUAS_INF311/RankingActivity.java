@@ -25,6 +25,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class RankingActivity extends AppCompatActivity {
+    private final boolean mockCademi = true;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private LinearLayout leaderboard;
@@ -86,10 +87,26 @@ public class RankingActivity extends AppCompatActivity {
 
                         if (document.exists()) {
 
-                            user.setPontos(document.getLong("pontos").intValue());
-                            user.setNome(document.getString("nome"));
-                            user.setCargo(document.getString("cargo"));
-                            desenharRanking();
+                            //user.setPontos(document.getLong("pontos").intValue());
+                            //user.setNome(document.getString("nome"));
+                            //user.setCargo(document.getString("cargo"));
+                            //desenharRanking();
+                            if (mockCademi) {
+                                //pro mock to usando os valores do bd do firebase
+                                user.setPontos(document.getLong("pontos").intValue());
+                                user.setNome(document.getString("nome"));
+                                user.setCargo(document.getString("cargo"));
+
+                                desenharRanking();
+
+                            } else {
+                                //quando eles passarem os dados da api a a gente vai ativar isso aqui, pra
+                                //poder atualizar o firestore com os dados do cademi
+                                //int pontosDaAPI =(puxar do do retrofit)
+                                //user.setPontos(pontosDaAPI);
+                                //db.collection("Usuarios").document(user.getUid()).update("pontos", pontosDaAPI);
+                                //desenharRanking();
+                            }
 
                         } else {
                             Log.d("FirestoreApp", "Esse ID de usuário não existe no banco.");
@@ -108,6 +125,7 @@ public class RankingActivity extends AppCompatActivity {
                     .get(AggregateSource.SERVER)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            leaderboard.removeAllViews();
                             AggregateQuerySnapshot snapshot = task.getResult();
 
                             // Quantidade de pessoas na frente dele
@@ -175,11 +193,11 @@ public class RankingActivity extends AppCompatActivity {
         int id = v.getId();
         if (id == R.id.home) {
             Intent it = new Intent(this, InicioActivity.class);
-            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(it);
         } else if (id == R.id.comunidade) {
             Intent it = new Intent(this, ComunidadeActivity.class);
-            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Perfeito igual ao slide pág. 36
+            it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(it);
         }
     }
