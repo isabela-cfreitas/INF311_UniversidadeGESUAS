@@ -97,6 +97,12 @@ public class RankingActivity extends AppCompatActivity {
                                 user.setNome(document.getString("nome"));
                                 user.setCargo(document.getString("cargo"));
 
+                                String cargo = document.getString("cargo");
+                                if ("administrador".equalsIgnoreCase(cargo)) {
+                                    findViewById(R.id.btn_menu_cadastrar_admin).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.se_tiver_outro).setVisibility(View.VISIBLE);
+                                }
+
                                 desenharRanking();
 
                             } else {
@@ -227,5 +233,12 @@ public class RankingActivity extends AppCompatActivity {
         it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //tem q limpar pra usuario nao conseguir "relogar" dps só com o botão de voltar
         startActivity(it);
         finish();
+    }
+
+    public void CadastroAdmin(View v) {
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
+        startActivity(new Intent(this, CadastroAdminActivity.class));
     }
 }

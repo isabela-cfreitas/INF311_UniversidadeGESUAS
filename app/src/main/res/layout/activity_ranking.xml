@@ -253,11 +253,27 @@ tools:context=".RankingActivity">
         android:onClick="VerMetas"/>
 
     <View
+        android:id="@+id/se_tiver_outro"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#E5E5E5"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/btn_menu_cadastrar_admin"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Cadastrar novo administrador"
+        android:textColor="@color/txtPrimary"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="CadastroAdmin"
+        android:visibility="gone"/>
 
     <View
         android:layout_width="match_parent"
@@ -265,6 +281,7 @@ tools:context=".RankingActivity">
         android:background="#E5E5E5"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"/>
+
 
     <TextView
         android:id="@+id/btn_menu_sair"
@@ -279,6 +296,7 @@ tools:context=".RankingActivity">
         android:focusable="true"
         android:background="?attr/selectableItemBackground"
         android:onClick="sairConta"/>
+
 
 </LinearLayout>
 

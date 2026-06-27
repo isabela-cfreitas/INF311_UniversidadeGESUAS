@@ -71,6 +71,18 @@ public class ComunidadeActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
+        String idUsuario = mAuth.getCurrentUser().getUid();
+
+        db.collection("Usuarios").document(idUsuario).get().addOnSuccessListener(res -> {
+            if (res.exists()) {
+                String cargo = res.getString("cargo");
+                if ("administrador".equalsIgnoreCase(cargo)) {
+                    findViewById(R.id.btn_menu_cadastrar_admin).setVisibility(View.VISIBLE);
+                    findViewById(R.id.se_tiver_outro).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         carregarPost();
     }
 
@@ -234,6 +246,13 @@ public class ComunidadeActivity extends AppCompatActivity {
     public void VerMetas(View v) {
         menu.closeDrawer(androidx.core.view.GravityCompat.END);
         startActivity(new Intent(this, MetasActivity.class));
+    }
+
+    public void CadastroAdmin(View v) {
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
+        startActivity(new Intent(this, CadastroAdminActivity.class));
     }
 
     public void sairConta (View v) {

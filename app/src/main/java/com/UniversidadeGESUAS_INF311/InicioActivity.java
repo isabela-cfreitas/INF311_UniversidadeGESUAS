@@ -134,6 +134,11 @@ public class InicioActivity extends AppCompatActivity {
                             // Documento existe mas o campo nome_usuario está vazio
                             txtOla.setText("Olá!");
                         }
+                        String cargo = res.getString("cargo");
+                        if ("administrador".equalsIgnoreCase(cargo)) {
+                            findViewById(R.id.btn_menu_cadastrar_admin).setVisibility(View.VISIBLE);
+                            findViewById(R.id.se_tiver_outro).setVisibility(View.VISIBLE);
+                        }
                     } else {
                         // Documento do usuário não existe no Firestore
                         txtOla.setText("Olá!");
@@ -174,13 +179,24 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     public void VerPerfil(View v) {
-        menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
         startActivity(new Intent(this, PerfilActivity.class));
     }
 
     public void VerMetas(View v) {
-        menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
         startActivity(new Intent(this, MetasActivity.class));
+    }
+
+    public void CadastroAdmin(View v) {
+        if (menu.isDrawerOpen(androidx.core.view.GravityCompat.END)) {
+            menu.closeDrawer(androidx.core.view.GravityCompat.END);
+        }
+        startActivity(new Intent(this, CadastroAdminActivity.class));
     }
 
     public void sairConta (View v) {
