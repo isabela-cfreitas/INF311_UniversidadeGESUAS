@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.SetOptions;
+import java.util.HashMap;
+import java.util.Map;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +35,11 @@ public class InicioActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private androidx.drawerlayout.widget.DrawerLayout menu;
+
+
+    private static final long DIAS_PARA_FICAR_BRAVA = 3;
+    private static final long DIAS_SEM_INTERAGIR_CURSO = 5;
+    private static final long PONTOS_PARA_FICAR_FELIZ = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +59,7 @@ public class InicioActivity extends AppCompatActivity {
         configurarCursos();
         configurarMateriais();
         resgatarNomeUsuario();
+        calcularEAtualizarEstadoBeea();
     }
 
     // CURSOS EM ANDAMENTO — dados mock
@@ -151,8 +165,189 @@ public class InicioActivity extends AppCompatActivity {
                 });
     }
 
+    private static class VariacaoBeea {
+        String texto;
+        int drawable;
+
+        VariacaoBeea(String texto, int drawable) {
+            this.texto = texto;
+            this.drawable = drawable;
+        }
+    }
+
+    private VariacaoBeea[] variacoesPara(String estado) {
+        switch (estado) {
+            case "brava":
+                return new VariacaoBeea[]{
+                        new VariacaoBeea(getString(R.string.beea_brava_1), R.drawable.beea_brava),
+                        new VariacaoBeea(getString(R.string.beea_brava_2), R.drawable.beea_brava2),
+                        new VariacaoBeea(getString(R.string.beea_brava_3), R.drawable.beea_brava3),
+                };
+            case "triste":
+                return new VariacaoBeea[]{
+                        new VariacaoBeea(getString(R.string.beea_triste_1), R.drawable.beea_triste),
+                        new VariacaoBeea(getString(R.string.beea_triste_2), R.drawable.beea_triste2),
+                };
+            case "preocupada":
+                return new VariacaoBeea[]{
+                        new VariacaoBeea(getString(R.string.beea_preocupada_1), R.drawable.beea_triste_rank),
+                        new VariacaoBeea(getString(R.string.beea_preocupada_2), R.drawable.beea_preocupada),
+                };
+            case "orgulhosa":
+                return new VariacaoBeea[]{
+                        new VariacaoBeea(getString(R.string.beea_orgulhosa_1), R.drawable.beea_orgulhosa),
+                        new VariacaoBeea(getString(R.string.beea_orgulhosa_2), R.drawable.beea_orgulhosa2),
+                };
+            case "feliz":
+                return new VariacaoBeea[]{
+                        new VariacaoBeea(getString(R.string.beea_feliz_1), R.drawable.beea_feliz),
+                        new VariacaoBeea(getString(R.string.beea_feliz_2), R.drawable.beea_feliz2),
+                        new VariacaoBeea(getString(R.string.beea_feliz_3), R.drawable.bea_init),
+                        new VariacaoBeea(getString(R.string.beea_feliz_4), R.drawable.bea_init),
+                };
+            case "hexa":
+                return new VariacaoBeea[]{
+                        new VariacaoBeea(getString(R.string.beea_hexa_1), R.drawable.beea_hexa),
+                };
+            default: // "neutra"
+                return new VariacaoBeea[]{
+                        new VariacaoBeea(getString(R.string.beea_neutra_1), R.drawable.bea_init),
+                        new VariacaoBeea(getString(R.string.beea_neutra_2), R.drawable.bea_init)
+                };
+        }
+    }
+
+    private void calcularEAtualizarEstadoBeea() {
+        String idUsuario = mAuth.getCurrentUser().getUid();
+        DocumentReference meuDoc = db.collection("Usuarios").document(idUsuario);
+
+        meuDoc.get().addOnSuccessListener(res -> {
+            if (!res.exists()) return;
+
+            Long pontos = res.getLong("pontos");
+            if (pontos == null) pontos = 0L;
+            final long pontosFinal = pontos;
+
+            Long posicaoAnterior = res.getLong("posicao_ranking");
+            if (posicaoAnterior == null) posicaoAnterior = 0L;
+            final long posicaoAnteriorFinal = posicaoAnterior;
+
+            Long sequenciaAtual = res.getLong("sequencia_dias");
+            if (sequenciaAtual == null) sequenciaAtual = 0L;
+            final long sequenciaAtualFinal = sequenciaAtual;
+
+            long diasSemAbrir = diasDesde(res.getTimestamp("ultimo_acesso"));
+            long diasSemInteragir = diasDesde(res.getTimestamp("ultima_interacao_curso"));
+
+            // ---- CÁLCULO DA SEQUÊNCIA (streak) ----
+            long diasCalendario = diasCalendarDesde(res.getTimestamp("ultimo_acesso"));
+            long novaSequencia;
+
+            if (diasCalendario < 0) {
+                // Nunca acessou antes -> primeiro dia da sequência
+                novaSequencia = 1;
+            } else if (diasCalendario == 0) {
+                // Já acessou hoje antes (abriu o app de novo no mesmo dia) -> mantém
+                novaSequencia = sequenciaAtual == 0 ? 1 : sequenciaAtual;
+            } else if (diasCalendario == 1) {
+                // Acessou ontem, acessa hoje -> continua a sequência
+                novaSequencia = sequenciaAtual + 1;
+            } else {
+                // Ficou 2+ dias sem acessar -> zera e reinicia em 1 (hoje conta como o novo dia 1)
+                novaSequencia = 1;
+            }
+
+            // Busca o ranking de todo mundo, ordenado por pontos
+            db.collection("Usuarios")
+                    .orderBy("pontos", Query.Direction.DESCENDING)
+                    .get()
+                    .addOnSuccessListener(todosOsUsuarios -> {
+                        long novaPosicao = 1;
+                        for (int i = 0; i < todosOsUsuarios.size(); i++) {
+                            if (todosOsUsuarios.getDocuments().get(i).getId().equals(idUsuario)) {
+                                novaPosicao = i + 1;
+                                break;
+                            }
+                        }
+
+                        boolean primeiroAcesso = (res.getTimestamp("ultimo_acesso") == null);
+
+                        String estado;
+
+                        if (primeiroAcesso) {
+                            estado = "neutra";
+                        } else if (diasSemAbrir < 0 || diasSemAbrir >= DIAS_PARA_FICAR_BRAVA) {
+                            estado = "brava";
+                        } else if (diasSemInteragir < 0 || diasSemInteragir >= DIAS_SEM_INTERAGIR_CURSO) {
+                            estado = "triste";
+                        } else if (novaSequencia == 5) {
+                            estado = "hexa";
+                        } else if (posicaoAnteriorFinal > 0 && novaPosicao > posicaoAnteriorFinal) {
+                            estado = "preocupada";
+                        } else if (posicaoAnteriorFinal > 0 && novaPosicao < posicaoAnteriorFinal) {
+                            estado = "orgulhosa";
+                        } else if (pontosFinal >= PONTOS_PARA_FICAR_FELIZ) {
+                            estado = "feliz";
+                        } else {
+                            estado = "neutra";
+                        }
+
+                        // Escolhe UMA variação completa (texto + arte juntos) pro estado decidido
+                        VariacaoBeea[] opcoes = variacoesPara(estado);
+                        VariacaoBeea escolhida = opcoes[new java.util.Random().nextInt(opcoes.length)];
+
+                        // Atualiza a tela
+                        ImageView imgBeea = findViewById(R.id.beaaState);
+                        TextView txtTitulo = findViewById(R.id.txtTitulo);
+                        txtTitulo.setText(escolhida.texto);
+                        imgBeea.setImageResource(escolhida.drawable);
+
+                        // Grava tudo de volta no próprio documento
+                        Map<String, Object> dados = new HashMap<>();
+                        dados.put("posicao_ranking_anterior", posicaoAnteriorFinal);
+                        dados.put("posicao_ranking", novaPosicao);
+                        dados.put("beea_state", estado);
+                        dados.put("beea_texto_card", escolhida.texto);
+                        dados.put("sequencia_dias", novaSequencia);
+                        dados.put("ultimo_acesso", FieldValue.serverTimestamp());
+                        meuDoc.set(dados, SetOptions.merge());
+                    });
+        });
+    }
+
+    private long diasCalendarDesde(com.google.firebase.Timestamp timestamp) {
+        if (timestamp == null) return -1; // nunca acessou antes
+
+        java.util.Calendar hoje = java.util.Calendar.getInstance();
+        zerarHora(hoje);
+
+        java.util.Calendar ultimoAcesso = java.util.Calendar.getInstance();
+        ultimoAcesso.setTime(timestamp.toDate());
+        zerarHora(ultimoAcesso);
+
+        long diffMillis = hoje.getTimeInMillis() - ultimoAcesso.getTimeInMillis();
+        return diffMillis / (1000 * 60 * 60 * 24);
+    }
+
+    private void zerarHora(java.util.Calendar cal) {
+        cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+        cal.set(java.util.Calendar.MINUTE, 0);
+        cal.set(java.util.Calendar.SECOND, 0);
+        cal.set(java.util.Calendar.MILLISECOND, 0);
+    }
+
+    private long diasDesde(com.google.firebase.Timestamp timestamp) {
+        if (timestamp == null) return -1; // nunca aconteceu
+        long diffMillis = System.currentTimeMillis() - timestamp.toDate().getTime();
+        return diffMillis / (1000 * 60 * 60 * 24);
+    }
+
     // Função para abrir o site do GESUAS para visualizar os conteúdos
     public void abrirSiteGesuas(View v) {
+        String idUsuario = mAuth.getCurrentUser().getUid();
+        db.collection("Usuarios").document(idUsuario)
+                .update("ultima_interacao_curso", FieldValue.serverTimestamp());
+
         String url = "https://membros.universidadegesuas.com.br/auth/login";
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);

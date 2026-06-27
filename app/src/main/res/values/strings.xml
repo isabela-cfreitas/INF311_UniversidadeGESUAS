@@ -36,4 +36,35 @@
     <string name="comunidade">COMUNIDADE</string>
     <string name="ranking"> RANKING</string>
 
+    <!-- FRASES DA BEEA -->
+    <!-- Brava -->
+    <string name="beea_brava_1">Sabia que as abelhas trabalham todo dia?\n\nMenos você, pelo visto...</string>
+    <string name="beea_brava_2">Cadê você??\n\nJá fazem dias que não nos vemos!</string>
+    <string name="beea_brava_3">Chega de corpo mole!\n\nEntre mais no app ou vou ser obrigada a apitar falta!!</string>
+
+    <!-- Triste -->
+    <string name="beea_triste_1">Já estava com saudades...\n\nVamos interagir mais?</string>
+    <string name="beea_triste_2">Ninguém apareceu para o treino hoje.\n\nOnde foi parar a nossa determinação?</string>
+
+    <!-- Preocupada -->
+    <string name="beea_preocupada_1">Você caiu algumas posições no ranking.</string>
+    <string name="beea_preocupada_2">Pressão total na área!\n\nUm minutinho de estudo agora salva o nosso campeonato.</string>
+
+    <!-- Orgulhosa -->
+    <string name="beea_orgulhosa_1">Você subiu no ranking!\n\nParabéns!!</string>
+    <string name="beea_orgulhosa_2">Melhor do mundo!!\n\nNem o melhor camisa 10 conseguiria manter essa consistência.</string>
+
+    <!-- Feliz -->
+    <string name="beea_feliz_1">Você está com muitos pontos!!\n\nQue tal resgatar mais?</string>
+    <string name="beea_feliz_2">O placar tá lindo e o mel tá garantido!!</string>
+    <string name="beea_feliz_3">Já viu que tem curso novo?</string>
+    <string name="beea_feliz_4">Vamos estudar mais um pouco hoje?</string>
+
+    <!-- Hexa -->
+    <string name="beea_hexa_1">Você está com uma sequência de 5 dias!!\n\nRumo ao Hexa!!</string>
+
+    <!-- Neutra -->
+    <string name="beea_neutra_1">Que tal começar um novo curso?</string>
+    <string name="beea_neutra_2">Vamos estudar mais um pouco hoje?</string>
+
 </resources>

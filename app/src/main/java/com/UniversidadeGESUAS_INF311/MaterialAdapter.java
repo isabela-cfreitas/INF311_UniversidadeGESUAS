@@ -12,10 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 
 public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHolder> {
-
     private final List<Material> materiais;
 
     public MaterialAdapter(List<Material> materiais) {
@@ -38,6 +41,16 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
 
         // Abre o site ao clicar no card
         holder.itemView.setOnClickListener(v -> {
+
+            // Registra a interação com o material no Firestore
+            String idUsuario = FirebaseAuth.getInstance().getUid();
+            if (idUsuario != null) {
+                FirebaseFirestore.getInstance()
+                        .collection("Usuarios")
+                        .document(idUsuario)
+                        .update("ultima_interacao_curso", FieldValue.serverTimestamp());
+            }
+
             String url = "https://membros.universidadegesuas.com.br/auth/login";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             v.getContext().startActivity(intent);
