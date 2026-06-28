@@ -87,6 +87,35 @@ public class ComentariosActivity extends AppCompatActivity {
                         Cargo.setText(cargo);
                         Conteudo.setText(conteudo);
 
+                        android.widget.ImageView fotoAutorComent = comentView.findViewById(R.id.perfil);
+                        fotoAutorComent.setImageResource(R.drawable.perfil_beea);
+
+                        if (nome != null && !nome.isEmpty()) {
+                            fotoAutorComent.setTag(nome);
+
+                            db.collection("Usuarios").whereEqualTo("nome_usuario", nome).get()
+                                    .addOnSuccessListener(querySnapshot -> {
+                                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                                            com.google.firebase.firestore.DocumentSnapshot userDoc = querySnapshot.getDocuments().get(0);
+
+                                            String avatarAutor = userDoc.getString("avatar_nome");
+                                            if (avatarAutor != null && !avatarAutor.isEmpty()) {
+                                                int resId = getResources().getIdentifier(avatarAutor, "drawable", getPackageName());
+                                                if (resId != 0) {
+                                                    if (nome.equals(fotoAutorComent.getTag())) {
+                                                        fotoAutorComent.setImageResource(resId);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        if (nome.equals(fotoAutorComent.getTag())) {
+                                            fotoAutorComent.setImageResource(R.drawable.perfil_beea);
+                                        }
+                                    });
+                        }
+
                         if (time != null) {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM HH:mm", Locale.getDefault());
                             Data.setText(sdf.format(time.toDate()));

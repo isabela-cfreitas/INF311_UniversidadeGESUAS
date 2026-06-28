@@ -3,6 +3,7 @@ package com.UniversidadeGESUAS_INF311;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +25,7 @@ public class NovoPostActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private EditText texto;
+    private ImageView fotoPerfilCriador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class NovoPostActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         texto = (EditText) findViewById(R.id.texto_post);
+        fotoPerfilCriador = findViewById(R.id.foto_perfil);
         db = FirebaseFirestore.getInstance();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -40,7 +43,22 @@ public class NovoPostActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        carregarAvatarUsuarioLogado();
+    }
 
+    private void carregarAvatarUsuarioLogado() {
+        String idUsuario = mAuth.getCurrentUser().getUid();
+        db.collection("Usuarios").document(idUsuario).get().addOnSuccessListener(res -> {
+            if (res.exists()) {
+                String avatarLogado = res.getString("avatar_nome");
+                if (avatarLogado != null && !avatarLogado.isEmpty()) {
+                    int resId = getResources().getIdentifier(avatarLogado, "drawable", getPackageName());
+                    if (resId != 0) {
+                        fotoPerfilCriador.setImageResource(resId);
+                    }
+                }
+            }
+        });
     }
 
     public void publicar_post (View v) {
