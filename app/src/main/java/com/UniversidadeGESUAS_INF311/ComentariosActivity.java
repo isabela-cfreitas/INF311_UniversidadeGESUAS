@@ -103,7 +103,12 @@ public class ComentariosActivity extends AppCompatActivity {
                                                 int resId = getResources().getIdentifier(avatarAutor, "drawable", getPackageName());
                                                 if (resId != 0) {
                                                     if (nome.equals(fotoAutorComent.getTag())) {
-                                                        fotoAutorComent.setImageResource(resId);
+                                                        com.bumptech.glide.Glide.with(ComentariosActivity.this)
+                                                                .load(resId)
+                                                                .placeholder(R.drawable.perfil_beea)
+                                                                .error(R.drawable.perfil_beea)
+                                                                .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
+                                                                .into(fotoAutorComent);
                                                     }
                                                 }
                                             }

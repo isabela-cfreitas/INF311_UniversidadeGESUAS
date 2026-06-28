@@ -51,6 +51,7 @@ public class AvatarActivity extends AppCompatActivity {
 
         db.collection("Usuarios").document(uid).set(dados, com.google.firebase.firestore.SetOptions.merge()).addOnSuccessListener(aVoid -> {
             Toast.makeText(this, "Avatar atualizado!", Toast.LENGTH_SHORT).show();
+            getSharedPreferences("UserPrefs", MODE_PRIVATE).edit().putString("avatar_local", nomeAvatar).apply();
             if (veioDoCadastro) {
                 Intent intent = new Intent(AvatarActivity.this, InicioActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

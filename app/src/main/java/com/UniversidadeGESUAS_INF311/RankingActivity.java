@@ -50,11 +50,28 @@ public class RankingActivity extends AppCompatActivity {
         fotoPerfilTopo = findViewById(R.id.foto_perfil);
 
         getFromDB();
+        android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String avatarLocal = prefs.getString("avatar_local", null);
+        if (avatarLocal != null && !avatarLocal.isEmpty()) {
+            int resIdLocal = getResources().getIdentifier(avatarLocal, "drawable", getPackageName());
+            if (resIdLocal != 0) {
+                com.bumptech.glide.Glide.with(this).load(resIdLocal).into(fotoPerfilTopo);
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String avatarLocal = prefs.getString("avatar_local", null);
+        if (avatarLocal != null && !avatarLocal.isEmpty()) {
+            int resIdLocal = getResources().getIdentifier(avatarLocal, "drawable", getPackageName());
+            if (resIdLocal != 0) {
+                com.bumptech.glide.Glide.with(this).load(resIdLocal).into(fotoPerfilTopo);
+            }
+        }
         getFromDB();
     }
 
@@ -111,8 +128,18 @@ public class RankingActivity extends AppCompatActivity {
                                 String avatarNomeLogado = document.getString("avatar_nome");
                                 if (avatarNomeLogado != null && !avatarNomeLogado.isEmpty()) {
                                     int resId = getResources().getIdentifier(avatarNomeLogado, "drawable", getPackageName());
-                                    if (resId != 0) fotoPerfilTopo.setImageResource(resId);
-                                    else fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
+                                    if (resId != 0) {
+                                        com.bumptech.glide.Glide.with(RankingActivity.this)
+                                                .load(resId)
+                                                .placeholder(R.drawable.perfil_beea)
+                                                .error(R.drawable.perfil_beea)
+                                                .into(fotoPerfilTopo);
+                                        android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                                        prefs.edit().putString("avatar_local", avatarNomeLogado).apply();
+
+                                    } else {
+                                        fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
+                                    }
                                 } else {
                                     fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
                                 }
@@ -204,12 +231,17 @@ public class RankingActivity extends AppCompatActivity {
         if (u.getAvatarNome() != null && !u.getAvatarNome().isEmpty()) {
             int resId = getResources().getIdentifier(u.getAvatarNome(), "drawable", getPackageName());
             if (resId != 0) {
-                FotoUsuarioLista.setImageResource(resId);
+                com.bumptech.glide.Glide.with(RankingActivity.this)
+                        .load(resId)
+                        .placeholder(R.drawable.perfil_beea)
+                        .error(R.drawable.perfil_beea)
+                        .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
+                        .into(FotoUsuarioLista);
             } else {
                 FotoUsuarioLista.setImageResource(R.drawable.perfil_beea);
             }
         } else {
-            FotoUsuarioLista.setImageResource(R.drawable.perfil_beea); // Fallback padrão seguro
+            FotoUsuarioLista.setImageResource(R.drawable.perfil_beea);
         }
 
         if (position == 1) {

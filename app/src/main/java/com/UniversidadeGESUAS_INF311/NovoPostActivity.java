@@ -54,7 +54,11 @@ public class NovoPostActivity extends AppCompatActivity {
                 if (avatarLogado != null && !avatarLogado.isEmpty()) {
                     int resId = getResources().getIdentifier(avatarLogado, "drawable", getPackageName());
                     if (resId != 0) {
-                        fotoPerfilCriador.setImageResource(resId);
+                        com.bumptech.glide.Glide.with(NovoPostActivity.this)
+                                .load(resId)
+                                .placeholder(R.drawable.perfil_beea)
+                                .error(R.drawable.perfil_beea)
+                                .into(fotoPerfilCriador);
                     }
                 }
             }

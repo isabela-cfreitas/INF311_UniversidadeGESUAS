@@ -87,7 +87,13 @@ public class ComunidadeActivity extends AppCompatActivity {
             String avatarLogado = res.getString("avatar_nome");
             if (avatarLogado != null && !avatarLogado.isEmpty()) {
                 int resId = getResources().getIdentifier(avatarLogado, "drawable", getPackageName());
-                if (resId != 0) fotoPerfilTopo.setImageResource(resId);
+                if (resId != 0) {
+                    com.bumptech.glide.Glide.with(ComunidadeActivity.this)
+                            .load(resId)
+                            .placeholder(R.drawable.perfil_beea)
+                            .error(R.drawable.perfil_beea)
+                            .into(fotoPerfilTopo);
+                }
                 else fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
             } else {
                 fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
@@ -95,18 +101,42 @@ public class ComunidadeActivity extends AppCompatActivity {
         });
 
         carregarPost();
+
+        android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String avatarLocal = prefs.getString("avatar_local", null);
+        if (avatarLocal != null && !avatarLocal.isEmpty()) {
+            int resIdLocal = getResources().getIdentifier(avatarLocal, "drawable", getPackageName());
+            if (resIdLocal != 0) {
+                com.bumptech.glide.Glide.with(this).load(resIdLocal).into(fotoPerfilTopo);
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String avatarLocal = prefs.getString("avatar_local", null);
+        if (avatarLocal != null && !avatarLocal.isEmpty()) {
+            int resIdLocal = getResources().getIdentifier(avatarLocal, "drawable", getPackageName());
+            if (resIdLocal != 0) {
+                com.bumptech.glide.Glide.with(this).load(resIdLocal).into(fotoPerfilTopo);
+            }
+        }
         String idUsuario = mAuth.getCurrentUser().getUid();
         db.collection("Usuarios").document(idUsuario).get().addOnSuccessListener(res -> {
             if (res.exists()) {
                 String avatarLogado = res.getString("avatar_nome");
                 if (avatarLogado != null && !avatarLogado.isEmpty()) {
                     int resId = getResources().getIdentifier(avatarLogado, "drawable", getPackageName());
-                    if (resId != 0) fotoPerfilTopo.setImageResource(resId);
+                    if (resId != 0) {
+                        com.bumptech.glide.Glide.with(ComunidadeActivity.this)
+                                .load(resId)
+                                .placeholder(R.drawable.perfil_beea)
+                                .error(R.drawable.perfil_beea)
+                                .into(fotoPerfilTopo);
+                    }
+                    prefs.edit().putString("avatar_local", avatarLogado).apply();
                 }
             }
         });
@@ -242,7 +272,12 @@ public class ComunidadeActivity extends AppCompatActivity {
                                     int resId = getResources().getIdentifier(avatarAutor, "drawable", getPackageName());
                                     if (resId != 0) {
                                         if (nome.equals(fotoAutorPost.getTag())) {
-                                            fotoAutorPost.setImageResource(resId);
+                                            com.bumptech.glide.Glide.with(ComunidadeActivity.this)
+                                                    .load(resId)
+                                                    .placeholder(R.drawable.perfil_beea)
+                                                    .error(R.drawable.perfil_beea)
+                                                    .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
+                                                    .into(fotoAutorPost);
                                         }
                                     }
                                 }

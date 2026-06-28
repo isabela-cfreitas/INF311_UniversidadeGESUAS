@@ -62,11 +62,27 @@ public class InicioActivity extends AppCompatActivity {
         configurarMateriais();
         resgatarNomeUsuario();
         calcularEAtualizarEstadoBeea();
+        android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String avatarLocal = prefs.getString("avatar_local", null);
+        if (avatarLocal != null && !avatarLocal.isEmpty()) {
+            int resIdLocal = getResources().getIdentifier(avatarLocal, "drawable", getPackageName());
+            if (resIdLocal != 0) {
+                com.bumptech.glide.Glide.with(this).load(resIdLocal).into(fotoPerfil);
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String avatarLocal = prefs.getString("avatar_local", null);
+        if (avatarLocal != null && !avatarLocal.isEmpty()) {
+            int resIdLocal = getResources().getIdentifier(avatarLocal, "drawable", getPackageName());
+            if (resIdLocal != 0) {
+                com.bumptech.glide.Glide.with(this).load(resIdLocal).into(fotoPerfil);
+            }
+        }
         resgatarNomeUsuario();
     }
 
@@ -160,7 +176,13 @@ public class InicioActivity extends AppCompatActivity {
                         if (avatarNome != null && !avatarNome.isEmpty()) {
                             int resId = getResources().getIdentifier(avatarNome, "drawable", getPackageName());
                             if (resId != 0) {
-                                fotoPerfil.setImageResource(resId);
+                                com.bumptech.glide.Glide.with(InicioActivity.this)
+                                        .load(resId)
+                                        .placeholder(R.drawable.perfil_beea)
+                                        .error(R.drawable.perfil_beea)
+                                        .into(fotoPerfil);
+                                android.content.SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                                prefs.edit().putString("avatar_local", avatarNome).apply();
                             }
                         }
                         String cargo = res.getString("cargo");

@@ -67,7 +67,11 @@ public class PerfilActivity extends AppCompatActivity {
                         if (avatarNome != null && !avatarNome.isEmpty()) {
                             int resId = getResources().getIdentifier(avatarNome, "drawable", getPackageName());
                             if (resId != 0) {
-                                fotoPerfilGrande.setImageResource(resId);
+                                com.bumptech.glide.Glide.with(PerfilActivity.this)
+                                        .load(resId)
+                                        .placeholder(R.drawable.perfil_beea)
+                                        .error(R.drawable.perfil_beea)
+                                        .into(fotoPerfilGrande);
                             }
                         }
 
