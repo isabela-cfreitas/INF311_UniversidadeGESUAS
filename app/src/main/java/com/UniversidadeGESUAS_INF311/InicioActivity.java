@@ -35,6 +35,7 @@ public class InicioActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private androidx.drawerlayout.widget.DrawerLayout menu;
+    private ImageView fotoPerfil;
 
 
     private static final long DIAS_PARA_FICAR_BRAVA = 3;
@@ -55,11 +56,18 @@ public class InicioActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db    = FirebaseFirestore.getInstance();
         menu = findViewById(R.id.drawer_layout);
+        fotoPerfil = findViewById(R.id.foto_perfil);
 
         configurarCursos();
         configurarMateriais();
         resgatarNomeUsuario();
         calcularEAtualizarEstadoBeea();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        resgatarNomeUsuario();
     }
 
     // CURSOS EM ANDAMENTO — dados mock
@@ -147,6 +155,13 @@ public class InicioActivity extends AppCompatActivity {
                         } else {
                             // Documento existe mas o campo nome_usuario está vazio
                             txtOla.setText("Olá!");
+                        }
+                        String avatarNome = res.getString("avatar_nome");
+                        if (avatarNome != null && !avatarNome.isEmpty()) {
+                            int resId = getResources().getIdentifier(avatarNome, "drawable", getPackageName());
+                            if (resId != 0) {
+                                fotoPerfil.setImageResource(resId);
+                            }
                         }
                         String cargo = res.getString("cargo");
                         if ("administrador".equalsIgnoreCase(cargo)) {

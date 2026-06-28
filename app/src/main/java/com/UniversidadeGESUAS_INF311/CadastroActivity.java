@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -132,6 +133,9 @@ public class CadastroActivity extends AppCompatActivity {
         db.collection("Usuarios").document(id_)
                 .set(usuario)
                 .addOnSuccessListener(aVoid -> {
+                    Intent intent = new Intent(this, AvatarActivity.class);
+                    intent.putExtra("isFromCadastro", true);
+                    startActivity(intent);
                     finish();
                 })
                 .addOnFailureListener(e -> {

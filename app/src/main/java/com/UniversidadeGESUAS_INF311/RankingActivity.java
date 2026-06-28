@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class RankingActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private LinearLayout leaderboard;
+    private ImageView fotoPerfilTopo;
 
     private androidx.drawerlayout.widget.DrawerLayout menu;
     @Override
@@ -45,7 +47,14 @@ public class RankingActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         leaderboard = findViewById(R.id.leaderboard);
         menu = findViewById(R.id.drawer_layout);
+        fotoPerfilTopo = findViewById(R.id.foto_perfil);
 
+        getFromDB();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getFromDB();
     }
 
@@ -67,8 +76,10 @@ public class RankingActivity extends AppCompatActivity {
                             int pontos = document.getLong("pontos").intValue();
                             String uid = document.getId();
                             String cargo = document.getString("cargo");
+                            String avatar = document.getString("avatar_nome");
 
                             top[i] = new UsuarioRanking(nome, pontos, uid, cargo);
+                            top[i].setAvatarNome(avatar);
                             i++;
                         }
                         desenharRanking();
@@ -96,6 +107,15 @@ public class RankingActivity extends AppCompatActivity {
                                 user.setPontos(document.getLong("pontos").intValue());
                                 user.setNome(document.getString("nome"));
                                 user.setCargo(document.getString("cargo"));
+
+                                String avatarNomeLogado = document.getString("avatar_nome");
+                                if (avatarNomeLogado != null && !avatarNomeLogado.isEmpty()) {
+                                    int resId = getResources().getIdentifier(avatarNomeLogado, "drawable", getPackageName());
+                                    if (resId != 0) fotoPerfilTopo.setImageResource(resId);
+                                    else fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
+                                } else {
+                                    fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
+                                }
 
                                 String cargo = document.getString("cargo");
                                 if ("administrador".equalsIgnoreCase(cargo)) {
@@ -174,11 +194,23 @@ public class RankingActivity extends AppCompatActivity {
         TextView Nome = positionView.findViewById(R.id.nome_usuario);
         TextView Pontos = positionView.findViewById(R.id.pontos);
         TextView Cargos = positionView.findViewById(R.id.cargo_usuario);
+        ImageView FotoUsuarioLista = positionView.findViewById(R.id.perfil);
 
         Position.setText(position + "º");
         Nome.setText(u.getNome());
         Pontos.setText(u.getPontos() + "");
         Cargos.setText(u.getCargo());
+
+        if (u.getAvatarNome() != null && !u.getAvatarNome().isEmpty()) {
+            int resId = getResources().getIdentifier(u.getAvatarNome(), "drawable", getPackageName());
+            if (resId != 0) {
+                FotoUsuarioLista.setImageResource(resId);
+            } else {
+                FotoUsuarioLista.setImageResource(R.drawable.perfil_beea);
+            }
+        } else {
+            FotoUsuarioLista.setImageResource(R.drawable.perfil_beea); // Fallback padrão seguro
+        }
 
         if (position == 1) {
             Position.setTextColor(0xFFD3AF37);

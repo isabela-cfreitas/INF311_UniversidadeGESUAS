@@ -5,6 +5,7 @@ public class UsuarioRanking {
     private int pontos;
     private String uid;
     private String cargo;
+    private String avatarNome;
 
     public UsuarioRanking() {}
 
@@ -19,6 +20,7 @@ public class UsuarioRanking {
     public int getPontos() { return pontos; }
     public String getUid() { return uid; }
     public String getCargo() { return cargo; }
+    public String getAvatarNome() { return avatarNome; }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -32,4 +34,5 @@ public class UsuarioRanking {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+    public void setAvatarNome(String avatarNome) { this.avatarNome = avatarNome; }
 }

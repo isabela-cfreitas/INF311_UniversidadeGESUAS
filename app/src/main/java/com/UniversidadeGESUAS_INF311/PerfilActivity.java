@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private EditText usuario, email;
     private TextView cargo, pontuacao;
+    private ImageView fotoPerfilGrande;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class PerfilActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         cargo = findViewById(R.id.perfil_cargo);
         pontuacao = findViewById(R.id.perfil_pontuacao);
+        fotoPerfilGrande = findViewById(R.id.foto_perfil_grande);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -47,6 +50,12 @@ public class PerfilActivity extends AppCompatActivity {
         carregarDados();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregarDados();
+    }
+
     protected void carregarDados () {
         String idUser = mAuth.getCurrentUser().getUid();
         db.collection("Usuarios").document(idUser).get().addOnSuccessListener(res -> {
@@ -54,6 +63,13 @@ public class PerfilActivity extends AppCompatActivity {
                         String nomeUsuarioBanco = res.getString("nome_usuario");
                         String cargoBanco = res.getString("cargo");
                         Long pontos = res.getLong("pontos");
+                        String avatarNome = res.getString("avatar_nome");
+                        if (avatarNome != null && !avatarNome.isEmpty()) {
+                            int resId = getResources().getIdentifier(avatarNome, "drawable", getPackageName());
+                            if (resId != 0) {
+                                fotoPerfilGrande.setImageResource(resId);
+                            }
+                        }
 
                         cargo.setText(cargoBanco);
                         usuario.setText(nomeUsuarioBanco);
@@ -83,6 +99,12 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void voltar(View v) {
         finish();
+    }
+
+    public void abrirEscolhaAvatar(View v) {
+        Intent intent = new Intent(this, AvatarActivity.class);
+        intent.putExtra("isFromCadastro", false);
+        startActivity(intent);
     }
 
 }

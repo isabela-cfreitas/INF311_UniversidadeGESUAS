@@ -69,6 +69,21 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/btn_alterar_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alterar Avatar"
+                android:textColor="@color/azul"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:onClick="abrirEscolhaAvatar"/>
+
+            <TextView
                 android:id="@+id/perfil_cargo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

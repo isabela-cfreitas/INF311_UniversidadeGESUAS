@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class ComunidadeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private EditText inputBusca;
+    private ImageView fotoPerfilTopo;
     private List<QueryDocumentSnapshot> listaPosts = new ArrayList<>();
 
     private String abaAtual = "geral";
@@ -54,6 +56,7 @@ public class ComunidadeActivity extends AppCompatActivity {
 
         db= FirebaseFirestore.getInstance();
         containerPosts = findViewById(R.id.posts);
+        fotoPerfilTopo = findViewById(R.id.foto_perfil);
         mAuth = FirebaseAuth.getInstance();
         menu = findViewById(R.id.drawer_layout);
 
@@ -81,9 +84,32 @@ public class ComunidadeActivity extends AppCompatActivity {
                     findViewById(R.id.se_tiver_outro).setVisibility(View.VISIBLE);
                 }
             }
+            String avatarLogado = res.getString("avatar_nome");
+            if (avatarLogado != null && !avatarLogado.isEmpty()) {
+                int resId = getResources().getIdentifier(avatarLogado, "drawable", getPackageName());
+                if (resId != 0) fotoPerfilTopo.setImageResource(resId);
+                else fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
+            } else {
+                fotoPerfilTopo.setImageResource(R.drawable.perfil_beea);
+            }
         });
 
         carregarPost();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String idUsuario = mAuth.getCurrentUser().getUid();
+        db.collection("Usuarios").document(idUsuario).get().addOnSuccessListener(res -> {
+            if (res.exists()) {
+                String avatarLogado = res.getString("avatar_nome");
+                if (avatarLogado != null && !avatarLogado.isEmpty()) {
+                    int resId = getResources().getIdentifier(avatarLogado, "drawable", getPackageName());
+                    if (resId != 0) fotoPerfilTopo.setImageResource(resId);
+                }
+            }
+        });
     }
 
     public void carregarPost() {
@@ -199,6 +225,35 @@ public class ComunidadeActivity extends AppCompatActivity {
             Conteudo.setText(conteudo);
             Curtidas.setText(String.valueOf(curtidas != null ? curtidas : 0));
             Comentarios.setText(String.valueOf(comentarios != null ? comentarios : 0));
+
+            ImageView fotoAutorPost = postView.findViewById(R.id.perfil);
+            fotoAutorPost.setImageResource(R.drawable.perfil_beea);
+
+            if (nome != null && !nome.isEmpty()) {
+                fotoAutorPost.setTag(nome);
+
+                db.collection("Usuarios").whereEqualTo("nome_usuario", nome).get()
+                        .addOnSuccessListener(querySnapshot -> {
+                            if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                                com.google.firebase.firestore.DocumentSnapshot userDoc = querySnapshot.getDocuments().get(0);
+
+                                String avatarAutor = userDoc.getString("avatar_nome");
+                                if (avatarAutor != null && !avatarAutor.isEmpty()) {
+                                    int resId = getResources().getIdentifier(avatarAutor, "drawable", getPackageName());
+                                    if (resId != 0) {
+                                        if (nome.equals(fotoAutorPost.getTag())) {
+                                            fotoAutorPost.setImageResource(resId);
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            if (nome.equals(fotoAutorPost.getTag())) {
+                                fotoAutorPost.setImageResource(R.drawable.perfil_beea);
+                            }
+                        });
+            }
 
             if (time != null) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM HH:mm", Locale.getDefault());

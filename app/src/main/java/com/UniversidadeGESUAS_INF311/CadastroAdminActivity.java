@@ -100,12 +100,10 @@ public class CadastroAdminActivity extends AppCompatActivity {
                         db.collection("Usuarios").document(uid)
                                 .set(adminMap)
                                 .addOnSuccessListener(aVoid -> {
-                                    Toast.makeText(this, "Administrador criado! Faça login novamente.", Toast.LENGTH_LONG).show();
-                                    //tem que deslogar pq o irebase quando cria uma conta nova ele tenta automaticamente entrar nela
-                                    mAuth.signOut();
-                                    Intent it = new Intent(CadastroAdminActivity.this, MainActivity.class);
-                                    it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(it);
+                                    Toast.makeText(this, "Administrador criado com sucesso!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(this, AvatarActivity.class);
+                                    intent.putExtra("isFromCadastro", true);
+                                    startActivity(intent);
                                     finish();
                                 })
                                 .addOnFailureListener(e -> {
