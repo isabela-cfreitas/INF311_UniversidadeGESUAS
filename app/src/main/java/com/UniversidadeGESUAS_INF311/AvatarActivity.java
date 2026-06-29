@@ -28,7 +28,7 @@ public class AvatarActivity extends AppCompatActivity {
 
         veioDoCadastro = getIntent().getBooleanExtra("isFromCadastro", false);
 
-        List<String> listaAvatares = Arrays.asList("nino", "ju", "juca", "drone", "ariana", "anitta");
+        List<String> listaAvatares = Arrays.asList("nino", "ju", "joca", "drone", "ariana", "anitta");
         LinearLayout container = findViewById(R.id.containerAvatares);
         LayoutInflater inflater = LayoutInflater.from(this);
 
