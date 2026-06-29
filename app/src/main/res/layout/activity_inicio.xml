@@ -440,7 +440,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MENU"
+            android:text="@string/menu"
             android:textStyle="bold"
             android:textSize="14sp"
             android:textColor="#747474"
@@ -451,7 +451,7 @@
             android:id="@+id/btn_menu_perfil"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:text="Meu Perfil"
+            android:text="@string/perfil"
             android:textColor="@color/txtPrimary"
             android:textSize="16sp"
             android:gravity="center_vertical"
@@ -472,7 +472,7 @@
             android:id="@+id/btn_menu_metas"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:text="Como ganhar pontos"
+            android:text="@string/pontos"
             android:textColor="@color/txtPrimary"
             android:textSize="16sp"
             android:gravity="center_vertical"
@@ -495,7 +495,7 @@
             android:id="@+id/btn_menu_cadastrar_admin"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:text="Cadastrar novo administrador"
+            android:text="@string/cadastroAdmin"
             android:textColor="@color/txtPrimary"
             android:textSize="16sp"
             android:gravity="center_vertical"
@@ -517,7 +517,7 @@
             android:id="@+id/btn_menu_sair"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:text="Sair da Conta"
+            android:text="@string/sairConta"
             android:textColor="#DC2626"
             android:textSize="16sp"
             android:gravity="center_vertical"
@@ -526,6 +526,35 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackground"
             android:onClick="sairConta"/>
+
+        <FrameLayout
+            android:id="@+id/loadingOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bgTela"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/logo_universidade_gesuas"
+                    android:contentDescription="@string/gesuasDescricao" />
+
+                <ProgressBar
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="24dp"
+                    android:indeterminateTint="@color/azul" />
+            </LinearLayout>
+        </FrameLayout>
 
 
     </LinearLayout>

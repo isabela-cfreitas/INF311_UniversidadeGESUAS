@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity{
         if (validar_dados(email_,senha_)) {
             mAuth.signInWithEmailAndPassword(email_,senha_).addOnCompleteListener(this, task -> {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(this, InicioActivity.class);
+                    Intent intent = new Intent(this, SplashActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

@@ -35,6 +35,11 @@
     <string name="inicio">INÍCIO</string>
     <string name="comunidade">COMUNIDADE</string>
     <string name="ranking"> RANKING</string>
+    <string name="sairConta">Sair da Conta</string>
+    <string name="cadastroAdmin">Cadastrar novo administrador</string>"
+    <string name="pontos">Como ganhar pontos</string>
+    <string name="perfil">Meu Perfil</string>
+    <string name="menu">MENU</string>
 
     <!-- FRASES DA BEEA -->
     <!-- Brava -->
